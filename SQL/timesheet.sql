@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `zeit` (
   `start` time NOT NULL,
   `stop` time NOT NULL,
   `pause` time DEFAULT NULL,
-  `Beschreibung` tinytext NOT NULL,
+  `beschreibung` tinytext NOT NULL,
   PRIMARY KEY (`zeitId`),
   KEY `FK_zeit_user` (`userId`),
   KEY `FK_zeit_projekt` (`projektId`),
