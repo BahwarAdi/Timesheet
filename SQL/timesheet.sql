@@ -18,6 +18,7 @@ CREATE DATABASE IF NOT EXISTS `Timesheet` /*!40100 DEFAULT CHARACTER SET utf8 */
 USE `Timesheet`;
 
 -- Exportiere Struktur von Tabelle Timesheet.projekt
+DROP TABLE IF EXISTS `projekt`;
 CREATE TABLE IF NOT EXISTS `projekt` (
   `projektId` int(11) NOT NULL AUTO_INCREMENT,
   `projektname` varchar(50) DEFAULT NULL,
@@ -32,6 +33,7 @@ INSERT INTO `projekt` (`projektId`, `projektname`, `beschreibung`) VALUES
 /*!40000 ALTER TABLE `projekt` ENABLE KEYS */;
 
 -- Exportiere Struktur von Tabelle Timesheet.user
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `userId` int(11) NOT NULL AUTO_INCREMENT,
   `nachname` varchar(50) NOT NULL,
@@ -51,6 +53,7 @@ INSERT INTO `user` (`userId`, `nachname`, `vorname`, `email`, `passwort`, `typ`,
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Exportiere Struktur von Tabelle Timesheet.zeit
+DROP TABLE IF EXISTS `zeit`;
 CREATE TABLE IF NOT EXISTS `zeit` (
   `zeitId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
@@ -60,11 +63,12 @@ CREATE TABLE IF NOT EXISTS `zeit` (
   `start` time NOT NULL,
   `stop` time NOT NULL,
   `pause` time DEFAULT NULL,
+  `Beschreibung` tinytext NOT NULL,
   PRIMARY KEY (`zeitId`),
   KEY `FK_zeit_user` (`userId`),
   KEY `FK_zeit_projekt` (`projektId`),
-  CONSTRAINT `FK_zeit_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`),
-  CONSTRAINT `FK_zeit_projekt` FOREIGN KEY (`projektId`) REFERENCES `projekt` (`projektId`)
+  CONSTRAINT `FK_zeit_projekt` FOREIGN KEY (`projektId`) REFERENCES `projekt` (`projektId`),
+  CONSTRAINT `FK_zeit_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Exportiere Daten aus Tabelle Timesheet.zeit: ~0 rows (ungefähr)

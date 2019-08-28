@@ -22,11 +22,12 @@ CREATE TABLE IF NOT EXISTS `zeit` (
   `start` time NOT NULL,
   `stop` time NOT NULL,
   `pause` time DEFAULT NULL,
+  `Beschreibung` tinytext NOT NULL,
   PRIMARY KEY (`zeitId`),
   KEY `FK_zeit_user` (`userId`),
   KEY `FK_zeit_projekt` (`projektId`),
-  CONSTRAINT `FK_zeit_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`),
-  CONSTRAINT `FK_zeit_projekt` FOREIGN KEY (`projektId`) REFERENCES `projekt` (`projektId`)
+  CONSTRAINT `FK_zeit_projekt` FOREIGN KEY (`projektId`) REFERENCES `projekt` (`projektId`),
+  CONSTRAINT `FK_zeit_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Exportiere Daten aus Tabelle Timesheet.zeit: ~0 rows (ungefähr)
