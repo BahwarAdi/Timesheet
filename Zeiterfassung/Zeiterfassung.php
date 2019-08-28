@@ -53,7 +53,7 @@ $projekt = $mysqli->query($commsel);
                 <td><input type="number" name="kalenderwoche" required> </td>
                 <td><input type="time" name="start" required> </td>
                 <td><input type="time" name="stop" required> </td>
-                <td><input type="number" name="pause"></td>
+                <td><input type="time" name="pause"></td>
                 <td><select name="projekt"  required >
                         <?php
                         while ($res = $projekt->fetch_array()){
