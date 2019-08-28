@@ -12,15 +12,21 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Exportiere Struktur von Tabelle Timesheet.zeit
+DROP TABLE IF EXISTS `zeit`;
 CREATE TABLE IF NOT EXISTS `zeit` (
   `zeitId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
+  `projektId` int(11) NOT NULL,
   `kw` int(11) NOT NULL,
   `datum` date NOT NULL,
   `start` time NOT NULL,
   `stop` time NOT NULL,
   `pause` time DEFAULT NULL,
-  PRIMARY KEY (`zeitId`)
+  PRIMARY KEY (`zeitId`),
+  KEY `FK_zeit_user` (`userId`),
+  KEY `FK_zeit_projekt` (`projektId`),
+  CONSTRAINT `FK_zeit_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`),
+  CONSTRAINT `FK_zeit_projekt` FOREIGN KEY (`projektId`) REFERENCES `projekt` (`projektId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Exportiere Daten aus Tabelle Timesheet.zeit: ~0 rows (ungefähr)

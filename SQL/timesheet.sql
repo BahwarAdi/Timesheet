@@ -13,22 +13,23 @@
 
 
 -- Exportiere Datenbank Struktur für Timesheet
+DROP DATABASE IF EXISTS `Timesheet`;
 CREATE DATABASE IF NOT EXISTS `Timesheet` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `Timesheet`;
 
--- Exportiere Struktur von Tabelle Timesheet.Projekt
-CREATE TABLE IF NOT EXISTS `Projekt` (
+-- Exportiere Struktur von Tabelle Timesheet.projekt
+CREATE TABLE IF NOT EXISTS `projekt` (
   `projektId` int(11) NOT NULL AUTO_INCREMENT,
   `projektname` varchar(50) DEFAULT NULL,
   `beschreibung` tinytext,
   PRIMARY KEY (`projektId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Exportiere Daten aus Tabelle Timesheet.Projekt: ~1 rows (ungefähr)
-/*!40000 ALTER TABLE `Projekt` DISABLE KEYS */;
-INSERT INTO `Projekt` (`projektId`, `projektname`, `beschreibung`) VALUES
+-- Exportiere Daten aus Tabelle Timesheet.projekt: ~1 rows (ungefähr)
+/*!40000 ALTER TABLE `projekt` DISABLE KEYS */;
+INSERT INTO `projekt` (`projektId`, `projektname`, `beschreibung`) VALUES
 	(1, 'TestProjekt', 'ein TestProjekt');
-/*!40000 ALTER TABLE `Projekt` ENABLE KEYS */;
+/*!40000 ALTER TABLE `projekt` ENABLE KEYS */;
 
 -- Exportiere Struktur von Tabelle Timesheet.user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -53,12 +54,17 @@ INSERT INTO `user` (`userId`, `nachname`, `vorname`, `email`, `passwort`, `typ`,
 CREATE TABLE IF NOT EXISTS `zeit` (
   `zeitId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
+  `projektId` int(11) NOT NULL,
   `kw` int(11) NOT NULL,
   `datum` date NOT NULL,
   `start` time NOT NULL,
   `stop` time NOT NULL,
   `pause` time DEFAULT NULL,
-  PRIMARY KEY (`zeitId`)
+  PRIMARY KEY (`zeitId`),
+  KEY `FK_zeit_user` (`userId`),
+  KEY `FK_zeit_projekt` (`projektId`),
+  CONSTRAINT `FK_zeit_user` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`),
+  CONSTRAINT `FK_zeit_projekt` FOREIGN KEY (`projektId`) REFERENCES `projekt` (`projektId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Exportiere Daten aus Tabelle Timesheet.zeit: ~0 rows (ungefähr)
