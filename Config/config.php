@@ -5,7 +5,7 @@ const TIMESHEET_DB_USER = 'root';
 const TIMESHEET_DB_PW = '';
 const TIMESHEET_DB_DATABASE = 'Timesheet';
 
-$mysqli = new mysqli(HUMANS_DB_HOST, HUMANS_DB_USER, HUMANS_DB_PW, HUMANS_DB_DATABASE);
+$mysqli = new mysqli(TIMESHEET_DB_HOST, TIMESHEET_DB_USER, TIMESHEET_DB_PW, TIMESHEET_DB_DATABASE);
 
 if ($mysqli === false) {
     die("Fehler: " . $mysqli->connect_error);
