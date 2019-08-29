@@ -11,18 +11,27 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Exportiere Datenbank Struktur für Timesheet
+CREATE DATABASE IF NOT EXISTS `Timesheet` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `Timesheet`;
+
 -- Exportiere Struktur von Tabelle Timesheet.projekt
 CREATE TABLE IF NOT EXISTS `projekt` (
   `projektId` int(11) NOT NULL AUTO_INCREMENT,
-  `projektname` varchar(50) DEFAULT NULL,
-  `beschreibung` tinytext,
-  PRIMARY KEY (`projektId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `projektname` varchar(50) NOT NULL,
+  `beschreibung` tinytext NOT NULL,
+  `archiviert` tinytext NOT NULL,
+  PRIMARY KEY (`projektId`),
+  UNIQUE KEY `Schlüssel 2` (`projektname`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Exportiere Daten aus Tabelle Timesheet.projekt: ~1 rows (ungefähr)
+-- Exportiere Daten aus Tabelle Timesheet.projekt: ~3 rows (ungefähr)
 /*!40000 ALTER TABLE `projekt` DISABLE KEYS */;
-INSERT INTO `projekt` (`projektId`, `projektname`, `beschreibung`) VALUES
-	(1, 'TestProjekt', 'ein TestProjekt');
+INSERT INTO `projekt` (`projektId`, `projektname`, `beschreibung`, `archiviert`) VALUES
+	(1, 'TestProjekt', 'ein TestProjekt', 'false'),
+	(2, 'Telefon', 'telefon in session', 'false'),
+	(3, 'Salat', 'Salat Jonglieren', 'true');
 /*!40000 ALTER TABLE `projekt` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

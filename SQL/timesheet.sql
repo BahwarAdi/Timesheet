@@ -21,15 +21,19 @@ USE `Timesheet`;
 DROP TABLE IF EXISTS `projekt`;
 CREATE TABLE IF NOT EXISTS `projekt` (
   `projektId` int(11) NOT NULL AUTO_INCREMENT,
-  `projektname` varchar(50) DEFAULT NULL,
-  `beschreibung` tinytext,
-  PRIMARY KEY (`projektId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `projektname` varchar(50) NOT NULL,
+  `beschreibung` tinytext NOT NULL,
+  `archiviert` tinytext NOT NULL,
+  PRIMARY KEY (`projektId`),
+  UNIQUE KEY `Schlüssel 2` (`projektname`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Exportiere Daten aus Tabelle Timesheet.projekt: ~1 rows (ungefähr)
+-- Exportiere Daten aus Tabelle Timesheet.projekt: ~3 rows (ungefähr)
 /*!40000 ALTER TABLE `projekt` DISABLE KEYS */;
-INSERT INTO `projekt` (`projektId`, `projektname`, `beschreibung`) VALUES
-	(1, 'TestProjekt', 'ein TestProjekt');
+INSERT INTO `projekt` (`projektId`, `projektname`, `beschreibung`, `archiviert`) VALUES
+	(1, 'TestProjekt', 'ein TestProjekt', 'false'),
+	(2, 'Telefon', 'telefon in session', 'false'),
+	(3, 'Salat', 'Salat Jonglieren', 'true');
 /*!40000 ALTER TABLE `projekt` ENABLE KEYS */;
 
 -- Exportiere Struktur von Tabelle Timesheet.user
