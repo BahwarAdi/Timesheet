@@ -12,17 +12,19 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Exportiere Struktur von Tabelle Timesheet.projekt
+DROP TABLE IF EXISTS `projekt`;
 CREATE TABLE IF NOT EXISTS `projekt` (
   `projektId` int(11) NOT NULL AUTO_INCREMENT,
   `projektname` varchar(50) DEFAULT NULL,
   `beschreibung` tinytext,
+  `archiviert` tinytext,
   PRIMARY KEY (`projektId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- Exportiere Daten aus Tabelle Timesheet.projekt: ~1 rows (ungefähr)
 /*!40000 ALTER TABLE `projekt` DISABLE KEYS */;
-INSERT INTO `projekt` (`projektId`, `projektname`, `beschreibung`) VALUES
-	(1, 'TestProjekt', 'ein TestProjekt');
+INSERT INTO `projekt` (`projektId`, `projektname`, `beschreibung`, `archiviert`) VALUES
+	(1, 'TestProjekt', 'ein TestProjekt', NULL);
 /*!40000 ALTER TABLE `projekt` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
