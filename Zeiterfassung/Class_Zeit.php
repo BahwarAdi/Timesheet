@@ -15,5 +15,6 @@ public function arbeitszeit($startzeit, $endzeit, $pause)
 
     $time_difference = ($end_time_stamp - $start_time_stamp)/3600;
     $tot_time = $time_difference - ($break_stamp);
+    echo($tot_time);
     }
 }
