@@ -29,10 +29,7 @@ if(isset($_POST['Speichern']))
         echo('Fehler'. $mysqli->error);
     }
 }
-
 ///----- Projecktauswal -----///
-$commsel = "SELECT * FROM `projekt`";
-$projekt = $mysqli->query($commsel);
 ?>
 
 <html>
@@ -58,7 +55,9 @@ $projekt = $mysqli->query($commsel);
                 <td><input type="time" name="pause"></td>
                 <td><select name="projekt"  required >
                         <?php
-                        while ($res = $projekt->fetch_array()){
+                        $commsel = "SELECT * FROM `projekt`";
+                        $query = $mysqli->query($commsel);
+                        while ($res = $query->fetch_array()){
                             echo('<option>'. $res['projektname'] .'</option>');
                         }
                         ?>
