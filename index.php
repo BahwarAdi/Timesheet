@@ -14,6 +14,7 @@ if(isset($_GET['index'])){
     if($res !== false && $res !== null && $res['passwort'] == $password){
         $_SESSION['user'] = $res['nachname'];
         $_SESSION['userId'] = $res['userId'];
+        $_SESSION['typ'] = $res['typ'];
         echo("Du bist als ".$_SESSION['user']. " angemeldet");
         header('Location: http://localhost/Timesheet/Zeiterfassung/Zeiterfassung.php');
     }
