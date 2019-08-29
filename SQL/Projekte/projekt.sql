@@ -15,8 +15,8 @@
 DROP TABLE IF EXISTS `projekt`;
 CREATE TABLE IF NOT EXISTS `projekt` (
   `projektId` int(11) NOT NULL AUTO_INCREMENT,
-  `projektname` varchar(50) DEFAULT NULL,
-  `beschreibung` tinytext,
+  `projektname` varchar(50) NOT NULL,
+  `beschreibung` tinytext NOT NULL,
   `archiviert` tinytext,
   PRIMARY KEY (`projektId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
