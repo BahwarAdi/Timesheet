@@ -1,6 +1,7 @@
 <?php
 session_start();
-$mysqli = new mysqli('localhost','root','','Timesheet');
+require_once "Config/Config.php";
+//$mysqli = new mysqli('localhost','root','','Timesheet');
 if($mysqli->connect_errno){
     echo("Fehler".$mysqli->connect_error());
 }
@@ -12,7 +13,9 @@ if(isset($_GET['index'])){
     $res=$user->fetch_assoc();
     if($res !== false && $res !== null && $res['passwort'] == $password){
         $_SESSION['user'] = $res['nachname'];
+        $_SESSION['userId'] = $res['userId'];
         echo("Du bist als ".$_SESSION['user']. " angemeldet");
+        header('Location: http://localhost/Timesheet/Zeiterfassung/Zeiterfassung.php');
     }
     else{
         $errorMessage = " E-Mail oder Passwort war ungültig !!";

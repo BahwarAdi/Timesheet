@@ -1,9 +1,11 @@
 <?php
 ///----- Datei holen -----///
+session_start();
 require_once "../Config/config.php";
 
+
 ///----- Welcher Benutzer -----///
-$userId = 1;    //abfrage welche user eingelogt ist  zum testen "1"
+$userId = $_SESSION['userId'];    //abfrage welche user eingelogt ist
 
 ///----- Variablen -----///
 if(isset($_POST['Speichern']))
