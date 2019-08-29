@@ -2,7 +2,7 @@
 
 const TIMESHEET_DB_HOST = '127.0.0.1';
 const TIMESHEET_DB_USER = 'root';
-const TIMESHEET_DB_PW = 'Bastard';
+const TIMESHEET_DB_PW = 'Bastard2';
 const TIMESHEET_DB_DATABASE = 'Timesheet';
 
 $mysqli = new mysqli(TIMESHEET_DB_HOST, TIMESHEET_DB_USER, TIMESHEET_DB_PW, TIMESHEET_DB_DATABASE);
