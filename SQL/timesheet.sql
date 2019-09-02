@@ -17,6 +17,19 @@ DROP DATABASE IF EXISTS `Timesheet`;
 CREATE DATABASE IF NOT EXISTS `Timesheet` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `Timesheet`;
 
+-- Exportiere Struktur von Tabelle Timesheet.feiertag
+DROP TABLE IF EXISTS `feiertag`;
+CREATE TABLE IF NOT EXISTS `feiertag` (
+  `feiertagId` int(11) NOT NULL AUTO_INCREMENT,
+  `datum` date NOT NULL,
+  `feiertagName` varchar(30) NOT NULL,
+  PRIMARY KEY (`feiertagId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Exportiere Daten aus Tabelle Timesheet.feiertag: ~0 rows (ungefähr)
+/*!40000 ALTER TABLE `feiertag` DISABLE KEYS */;
+/*!40000 ALTER TABLE `feiertag` ENABLE KEYS */;
+
 -- Exportiere Struktur von Tabelle Timesheet.projekt
 DROP TABLE IF EXISTS `projekt`;
 CREATE TABLE IF NOT EXISTS `projekt` (
@@ -26,14 +39,15 @@ CREATE TABLE IF NOT EXISTS `projekt` (
   `archiviert` tinytext NOT NULL,
   PRIMARY KEY (`projektId`),
   UNIQUE KEY `Schlüssel 2` (`projektname`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Exportiere Daten aus Tabelle Timesheet.projekt: ~3 rows (ungefähr)
+-- Exportiere Daten aus Tabelle Timesheet.projekt: ~4 rows (ungefähr)
 /*!40000 ALTER TABLE `projekt` DISABLE KEYS */;
 INSERT INTO `projekt` (`projektId`, `projektname`, `beschreibung`, `archiviert`) VALUES
 	(1, 'TestProjekt', 'ein TestProjekt', 'false'),
 	(2, 'Telefon', 'telefon in session', 'false'),
-	(3, 'Salat', 'Salat Jonglieren', 'true');
+	(3, 'Salat', 'Salat Jonglieren', 'true'),
+	(8, 'Hans', 'asdasdasd', 'true');
 /*!40000 ALTER TABLE `projekt` ENABLE KEYS */;
 
 -- Exportiere Struktur von Tabelle Timesheet.user
