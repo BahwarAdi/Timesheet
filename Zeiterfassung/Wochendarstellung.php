@@ -6,7 +6,7 @@ session_start();
 
 ///----- Variablen -----///
 $s = new Zeit();
-$userid = 2;  //$_SESSION['userId'];
+$userid = 1;  //$_SESSION['userId'];
 $order = 'datum';
 
 ?>
@@ -24,29 +24,25 @@ $order = 'datum';
     <td>
         <?php
             $commsel = "SELECT * FROM `projekt`";
-            $query = $mysqli->query($commsel);
-            while ($res = $query->fetch_array()){
+            $query1 = $mysqli->query($commsel);
+            while ($res = $query1->fetch_array()){
                 $name = $res['projektname'];
                 $id = $res['projektId'];
                 echo('<button type="submit" name="name" value="'.$id.'"> '.$name.' </button>');
             }
-            $projektid = ($_POST['name']);
             ?>
 </form>
-    <fieldset>
+<fieldset>
 <table>
     <tr>
     <?php
 
+    $projektid = ($_POST['name']);
     $comm =  ('SELECT * FROM `zeit` WHERE userId = '.$userid.'  AND projektId ='.$projektid.' ORDER BY '.$order.' ASC ');
     $query = $mysqli->query($comm);
     while ($res = $query->fetch_array()){
         echo('<tr>');
-        //echo ('<th>' . $res['userId']. '</th>');
-        //echo ('<th>' . $res['zeitId']. '</th>');
-        //echo ('<th>' . $res['datum']. '</th>');
         echo ('<th>' . $res['datum']. '</th>');
-
         $startzeit = $res['start'];         ///Rechnen zeit
         $endzeit = $res['stop'];            ///Rechnen zeit
         $pause  = $res['pause'];            ///Rechnen zeit

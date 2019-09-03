@@ -1,17 +1,8 @@
 <?php
 ///----- Datei holen -----///
 session_start();
-if($_SESSION['typ'] == 'user'){
-    echo ('weg da admin');
-    //header('Location: http://localhost/Timesheet/index.php');
-}
-else{
-
-    echo ('Wilkommen user ');
 
 require_once "../Config/config.php";
-
-
 ///----- Welcher Benutzer -----///
 $userId = $_SESSION['userId'];    //abfrage welche user eingelogt ist
 
@@ -37,7 +28,7 @@ if(isset($_POST['Speichern']))
         echo('Fehler'. $mysqli->error);
     }
 }
-}
+
 
 ///----- Projecktauswal -----///
 ?>
