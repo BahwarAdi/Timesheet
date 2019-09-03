@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once "Config/Config.php";
-//$mysqli = new mysqli('localhost','root','','Timesheet');
+
+$mysqli = new mysqli('localhost','root','','Timesheet');
 if($mysqli->connect_errno){
     echo("Fehler".$mysqli->connect_error());
 }
@@ -14,6 +14,7 @@ if(isset($_GET['index'])){
     if($res !== false && $res !== null && $res['passwort'] == $password){
         $_SESSION['user'] = $res['nachname'];
         $_SESSION['userId'] = $res['userId'];
+        $_SESSION['typ'] = $res['typ'];
         echo("Du bist als ".$_SESSION['user']. " angemeldet");
         header('Location: http://localhost/Timesheet/Zeiterfassung/Zeiterfassung.php');
     }
@@ -27,6 +28,7 @@ if(isset($_GET['index'])){
 <head>
     <title>reamis Login</title>
     <link href="Style/StyleSheet.css" rel="stylesheet" type="text/css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 </head>
