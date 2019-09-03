@@ -2,18 +2,21 @@
 session_start();
 require_once('../../Config/config.php');
 
-if( isset($_POST['projekt']))
+if( isset($_POST['soll']))
 {
-    $projektName = $_POST['projektName'];
-    $projektBeschreibung = $_POST['projektBeschreibung'];
-
-    $mysqli->query("INSERT INTO projekt (projektname,beschreibung,archiviert) VALUES ('$projektName','$projektBeschreibung','false')");
+    $nachname = $_POST['nachname'];
+    $vorname = $_POST['vorname'];
+    $tagessoll = $_POST['tagessoll'];
+    var_dump($tagessoll);
+    $mysqli->query("UPDATE user SET soll = '$tagessoll' WHERE nachname = '$nachname' AND vorname = '$vorname'");
 }
-elseif(isset($_POST['archiv']))
+elseif(isset($_POST['addFeiertag']))
 {
-    $projektName = $_POST['projektName'];
+    $feiertagName = $_POST['feiertagName'];
+    $feiertagDatum = $_POST['feiertagDatum'];
+    $feiertagZeit = $_POST['feiertagZeit'];
 
-    $mysqli->query("UPDATE projekt SET archiviert = 'true' WHERE projektname LIKE '$projektName'");
+    $mysqli->query("INSERT INTO feiertag (datum,feiertagName,arbeitszeit) VALUES ('$feiertagDatum','$feiertagName','$feiertagZeit')");
 }
 
 
@@ -42,15 +45,15 @@ elseif(isset($_POST['archiv']))
                     </tr>
                     <tr>
                         <td>
-                            Vorname User:
+                            Tagessoll:
                         </td>
                         <td>
-                            <input type="text" name="vorname">
+                            <input type="time" name="tagessoll">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="submit" name="projekt" value="Hinzufügen">
+                            <input type="submit" name="soll" value="Festlegen">
                         </td>
                         <td>
                             <input type="reset">
@@ -61,19 +64,35 @@ elseif(isset($_POST['archiv']))
         </div>
         <div>
             <form action="" method="post">
-                <h3>Projekt Archivieren</h3>
+                <h3>Feiertag Hinzufügen</h3>
                 <table>
                     <tr>
                         <td>
-                            Projektname:
+                            Name:
                         </td>
                         <td>
-                            <input type="text" name="projektName">
+                            <input type="text" name="feiertagName">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="submit" name="archiv" value="Hinzufügen">
+                            Datum:
+                        </td>
+                        <td>
+                            <input type="date" name="feiertagDatum">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Arbeitszeit:
+                        </td>
+                        <td>
+                            <input type="time" name="feiertagZeit">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" name="addFeiertag" value="Hinzufügen">
                         </td>
                         <td>
                             <input type="reset">
@@ -86,22 +105,26 @@ elseif(isset($_POST['archiv']))
             <table>
                 <tr>
                     <th>
-                        Projektname
+                        Feiertag
                     </th>
                     <th>
-                        Beschreibung
+                        Datum
+                    </th>
+                    <th>
+                        Arbeitszeit
                     </th>
                 </tr>
 
                 <?php
 
-                $res = $mysqli->query("SELECT projektname, beschreibung FROM projekt WHERE archiviert LIKE 'false' ORDER BY projektId");
+                $res = $mysqli->query("SELECT feiertagName, datum,arbeitszeit FROM feiertag ORDER BY feiertagId");
 
                 while ($row = $res->fetch_assoc()) {
 
                     echo('<tr>
-          <td>' . $row['projektname'] . '</td>
-          <td>' . $row['beschreibung'] . '</td>
+          <td>' . $row['feiertagName'] . '</td>
+          <td>' . $row['datum'] . '</td>
+          <td>' . $row['arbeitszeit'] . '</td>
           </tr>');
 
                 }
