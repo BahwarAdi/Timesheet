@@ -7,7 +7,6 @@ session_start();
 ///----- Variablen -----///
 $s = new Zeit();
 $userid = 1;  //$_SESSION['userId'];
-$order = 'datum';
 
 ?>
 
@@ -37,6 +36,7 @@ $order = 'datum';
     <tr>
     <?php
 
+    $order = 'datum';
     $projektid = ($_POST['name']);
     $comm =  ('SELECT * FROM `zeit` WHERE userId = '.$userid.'  AND projektId ='.$projektid.' ORDER BY '.$order.' ASC ');
     $query = $mysqli->query($comm);
