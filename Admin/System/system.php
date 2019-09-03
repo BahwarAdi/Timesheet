@@ -2,14 +2,18 @@
 session_start();
 require_once('../../Config/config.php');
 
+#region verarbeitung
+#region verarbeitung soll
 if( isset($_POST['soll']))
 {
     $nachname = $_POST['nachname'];
     $vorname = $_POST['vorname'];
     $tagessoll = $_POST['tagessoll'];
-    var_dump($tagessoll);
+
     $mysqli->query("UPDATE user SET soll = '$tagessoll' WHERE nachname = '$nachname' AND vorname = '$vorname'");
 }
+#endregion
+#region verarbeitung Feiertag Hinzufügen
 elseif(isset($_POST['addFeiertag']))
 {
     $feiertagName = $_POST['feiertagName'];
@@ -18,8 +22,17 @@ elseif(isset($_POST['addFeiertag']))
 
     $mysqli->query("INSERT INTO feiertag (datum,feiertagName,arbeitszeit) VALUES ('$feiertagDatum','$feiertagName','$feiertagZeit')");
 }
+#endregion
+#region verarbeitung Feiertag Entfernen
+elseif(isset($_POST['delFeiertag']))
+{
+    $feiertagId = $_POST['feiertagId'];
 
 
+    $mysqli->query("DELETE FROM feiertag WHERE feiertagId = '$feiertagId'");
+}
+#endregion
+#endregion
 ?>
     <body>
     <main>
@@ -102,8 +115,34 @@ elseif(isset($_POST['addFeiertag']))
             </form>
         </div>
         <div>
+            <form action="" method="post">
+                <h3>Feiertag Entfernen</h3>
+                <table>
+                    <tr>
+                        <td>
+                            Id:
+                        </td>
+                        <td>
+                            <input type="number" name="feiertagId">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" name="delFeiertag" value="Entfernen">
+                        </td>
+                        <td>
+                            <input type="reset">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div>
             <table>
                 <tr>
+                    <th>
+                        Id
+                    </th>
                     <th>
                         Feiertag
                     </th>
@@ -117,11 +156,12 @@ elseif(isset($_POST['addFeiertag']))
 
                 <?php
 
-                $res = $mysqli->query("SELECT feiertagName, datum,arbeitszeit FROM feiertag ORDER BY feiertagId");
+                $res = $mysqli->query("SELECT feiertagId,feiertagName, datum,arbeitszeit FROM feiertag ORDER BY feiertagId");
 
                 while ($row = $res->fetch_assoc()) {
 
                     echo('<tr>
+          <td>' . $row['feiertagId'] . '</td>
           <td>' . $row['feiertagName'] . '</td>
           <td>' . $row['datum'] . '</td>
           <td>' . $row['arbeitszeit'] . '</td>
