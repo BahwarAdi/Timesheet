@@ -1,9 +1,8 @@
 <?php
 ///----- Datei holen -----///
 session_start();
+
 require_once "../Config/config.php";
-
-
 ///----- Welcher Benutzer -----///
 $userId = $_SESSION['userId'];    //abfrage welche user eingelogt ist
 
@@ -29,6 +28,8 @@ if(isset($_POST['Speichern']))
         echo('Fehler'. $mysqli->error);
     }
 }
+
+
 ///----- Projecktauswal -----///
 ?>
 

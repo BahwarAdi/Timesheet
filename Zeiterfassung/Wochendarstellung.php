@@ -1,46 +1,64 @@
 <?php
+///----- Dateien Holen -----///
 require_once "../Config/config.php";
-$day = array('Montag','Dienstag','Mittwoch','Wonnerstag','Freitag','Samstag','Sonntag',);
-$kw = '1';
+require_once "Class_Zeit.php";
+session_start();
+
+///----- Variablen -----///
+$s = new Zeit();
+$userid = 1;  //$_SESSION['userId'];
+
 ?>
 
 <html>
 <head><style>table, th, td {
-            border: 1px solid black;
+            border: 1px solid rgba(108, 0, 56, 0.74);
             border-collapse: collapse;
             background: gainsboro;
             padding: 2px;
         }</style>
 </head>
 <body>
-    <form action="" method="post">
-        <table>
-            <tr>
-                <th> KW<?php echo($kw);  ?></th>
-            </tr>
-            <tr>
-                <th>Projekt</th>
-                <th>Montag</th>
-                <th>Dienstag</th>
-                <th>Mittwoch</th>
-                <th>Donnerstag</th>
-                <th>Freitag</th>
-                <th>Samstag</th>
-                <th>Sonntag</th>
-            </tr>
-            <?php
-            $pro = $mysqli->query("SELECT projektname FROM projekt");
-            while ($res = $pro->fetch_assoc()){
-                echo('<tr><td>'.$res['projektname'].'</td>');
-                    foreach ($day as $time) {
-                    echo('<td><input style="width:50px" type="number" value="' . $_POST[$time . 'zeit'] . '" name="' . $time . 'zeit"></td>');
-                    }
-                    ' </tr>';
-                     }
-                     ?>
-        </table>
-        <button type="submit">Speichern</button>
+<Form method="post">
+    <td>
+        <?php
+            $commsel = "SELECT * FROM `projekt`";
+            $query1 = $mysqli->query($commsel);
+            while ($res = $query1->fetch_array()){
+                $name = $res['projektname'];
+                $id = $res['projektId'];
+                echo('<button type="submit" name="name" value="'.$id.'"> '.$name.' </button>');
+            }
+            ?>
 </form>
+<fieldset>
+<table>
+    <tr>
+    <?php
+
+    $order = 'datum';
+    $projektid = ($_POST['name']);
+    $comm =  ('SELECT * FROM `zeit` WHERE userId = '.$userid.'  AND projektId ='.$projektid.' ORDER BY '.$order.' ASC ');
+    $query = $mysqli->query($comm);
+    while ($res = $query->fetch_array()){
+        echo('<tr>');
+        echo ('<th>' . $res['datum']. '</th>');
+        $startzeit = $res['start'];         ///Rechnen zeit
+        $endzeit = $res['stop'];            ///Rechnen zeit
+        $pause  = $res['pause'];            ///Rechnen zeit
+        $s->arbeitszeit($startzeit,$endzeit,$pause );
+        echo ('<th>' . $tot_time.' Stunden</th>');
+        echo ('<th>' . $res['beschreibung']. '</th>');
+}
+    ?>
+</table>
+    </fieldset>
+
+
+
+
+
+
 </body>
 </html>
 
