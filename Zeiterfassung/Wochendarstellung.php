@@ -18,6 +18,8 @@ $userid = 1;  //$_SESSION['userId'];
         }</style>
 </head>
 <body>
+<div>
+</div>
 <Form method="post">
     <td>
         <?php
@@ -31,15 +33,12 @@ $userid = 1;  //$_SESSION['userId'];
             echo('<button type="submit" name="was" value='.$res['projektId'].'> ' . $name . ' </button>');
 
         }
-        var_dump($_POST['was']);
         ?>
-</form>
 <fieldset>
     <table>
         <tr>
             <?php
             $order = 'datum';
-            $projektid = $_SESSION['projekt'];
             $comm = ('SELECT * FROM `zeit` WHERE userId = ' . $userid . '  AND projektId ='.$_POST['was'].' ORDER BY ' . $order . ' ASC ');
             $commall = ('SELECT * FROM `zeit` WHERE userId = ' . $userid . ' ORDER BY ' . $order . ' ASC ');
 
@@ -47,40 +46,49 @@ $userid = 1;  //$_SESSION['userId'];
                 $query1 = $mysqli->query($commall);
             while ($res1 = $query1->fetch_array()) {
                 echo('<tr>');
-                echo('<th>' . $res1['zeitId'] . '</th>');
-                echo('<th>' . $res1['datum'] . '</th>');
+                echo('<td>' . $res1['zeitId'] . '</td>');
+                echo('<td>' . $res1['datum'] . '</td>');
                 $startzeit = $res1['start'];         ///Rechnen zeit
                 $endzeit = $res1['stop'];            ///Rechnen zeit
                 $pause = $res1['pause'];            ///Rechnen zeit
                 $s->arbeitszeit($startzeit, $endzeit, $pause);
-                echo('<th>' . $tot_time . ' Stunden</th>');
-                echo('<th>' . $res1['beschreibung'] . '</th>');
+                echo('<td>' . $tot_time . ' Stunden</td>');
+                echo('<td>' . $res1['beschreibung'] . '</td>');
             }
             }
             elseif ($_POST['was']= $_POST['was']){
                 $query = $mysqli->query($comm);
                 while ($res = $query->fetch_array()) {
                     echo('<tr>');
-                    echo('<th>' . $res['zeitId'] . '</th>');
-                    echo('<th>' . $res['datum'] . '</th>');
+                    echo('<td>' . $res['zeitId'] . '</td>');
+                    echo('<td>' . $res['datum'] . '</td>');
                     $startzeit = $res['start'];         ///Rechnen zeit
                     $endzeit = $res['stop'];            ///Rechnen zeit
                     $pause = $res['pause'];            ///Rechnen zeit
                     $s->arbeitszeit($startzeit, $endzeit, $pause);
-                    echo('<th>' . $tot_time . ' Stunden</th>');
-                    echo('<th>' . $res['beschreibung'] . '</th>');
+                    echo('<td>' . $tot_time . ' Stunden</td>');
+                    echo('<td>' . $res['beschreibung'] . '</td>');
                 }
             }
 
             ?>
     </table>
+
+</form>
 </fieldset>
 <form method="post">
     <?php
-    $comdel = "DELETE FROM zeit WHERE zeitId = $id";
+    echo ('<input type="number" name="num">');
+    echo ('<button type="submit" name="del" value= >Löschen</button>');
+    $id =$_POST['num'];
+
+    if($_POST['num']){
+        $id =$_POST['num'];
+        $comdel = "DELETE FROM zeit WHERE zeitId = $id ";
+        $mysqli->query($comdel);
+        unset($_POST);
+    }
     ?>
-    <input type="number" name="value">
-    <button>Löschen</button>
 </form>
 </body>
 </html>
