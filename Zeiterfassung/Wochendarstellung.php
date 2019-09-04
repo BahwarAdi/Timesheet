@@ -42,7 +42,7 @@ $userid = 1;  //$_SESSION['userId'];
             $comm = ('SELECT * FROM `zeit` WHERE userId = ' . $userid . '  AND projektId ='.$_POST['was'].' ORDER BY ' . $order . ' ASC ');
             $commall = ('SELECT * FROM `zeit` WHERE userId = ' . $userid . ' ORDER BY ' . $order . ' ASC ');
 
-            if(!$_POST ||$_POST['was']== 'all'){
+            if(!$_POST ||$_POST['was']== 'all'||$_POST['num']){
                 $query1 = $mysqli->query($commall);
             while ($res1 = $query1->fetch_array()) {
                 echo('<tr>');
@@ -78,7 +78,7 @@ $userid = 1;  //$_SESSION['userId'];
 </fieldset>
 <form method="post">
     <?php
-    echo ('<input type="number" name="num">');
+    echo ('<input type="number" name="num" required>');
     echo ('<button type="submit" name="del" value= >Löschen</button>');
     $id =$_POST['num'];
 
