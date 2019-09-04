@@ -86,7 +86,7 @@ $userid = 1;  //$_SESSION['userId'];
         $id =$_POST['num'];
         $comdel = "DELETE FROM zeit WHERE zeitId = $id ";
         $mysqli->query($comdel);
-        unset($_POST);
+        header('Location:Wochendarstellung.php');
     }
     ?>
 </form>
