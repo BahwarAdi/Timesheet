@@ -1,9 +1,8 @@
 <?php
 ///----- Datei holen -----///
 session_start();
+
 require_once "../Config/config.php";
-
-
 ///----- Welcher Benutzer -----///
 $userId = $_SESSION['userId'];    //abfrage welche user eingelogt ist
 
@@ -29,6 +28,8 @@ if(isset($_POST['Speichern']))
         echo('Fehler'. $mysqli->error);
     }
 }
+
+
 ///----- Projecktauswal -----///
 ?>
 
@@ -36,37 +37,37 @@ if(isset($_POST['Speichern']))
 <head>
 </head>
 <body>
-    <form action="" method="post">
-        <table>
-            <tr>
-                <th>Datum</th>
-                <th>Kalenderwoche</th>
-                <th>Start</th>
-                <th>Stop</th>
-                <th>Pause</th>
-                <th>Projekt</th>
-                <th>Beschreibung</th>
-            </tr>
-            <tr>
-                <td><input type="date" name="datum" required> </td>
-                <td><input type="number" name="kalenderwoche" required> </td>
-                <td><input type="time" name="start" required> </td>
-                <td><input type="time" name="stop" required> </td>
-                <td><input type="time" name="pause"></td>
-                <td><select name="projekt"  required >
-                        <?php
-                        $commsel = "SELECT * FROM `projekt`";
-                        $query = $mysqli->query($commsel);
-                        while ($res = $query->fetch_array()){
-                            echo('<option>'. $res['projektname'] .'</option>');
-                        }
-                        ?>
-                    </select>
-                </td>
-                <td><input type="text" name="beschreibung" placeholder="Beschreibung" required></td>
-            </tr>
-        </table>
-        <button type="submit" name="Speichern">Speichern</button>
+<form action="" method="post">
+    <table>
+        <tr>
+            <th>Datum</th>
+            <th>Kalenderwoche</th>
+            <th>Start</th>
+            <th>Stop</th>
+            <th>Pause</th>
+            <th>Projekt</th>
+            <th>Beschreibung</th>
+        </tr>
+        <tr>
+            <td><input type="date" name="datum" required> </td>
+            <td><input type="number" name="kalenderwoche" required> </td>
+            <td><input type="time" name="start" required> </td>
+            <td><input type="time" name="stop" required> </td>
+            <td><input type="time" name="pause"></td>
+            <td><select name="projekt"  required >
+                    <?php
+                    $commsel = "SELECT * FROM `projekt`";
+                    $query = $mysqli->query($commsel);
+                    while ($res = $query->fetch_array()){
+                        echo('<option>'. $res['projektname'] .'</option>');
+                    }
+                    ?>
+                </select>
+            </td>
+            <td><input type="text" name="beschreibung" placeholder="Beschreibung" required></td>
+        </tr>
+    </table>
+    <button type="submit" name="Speichern">Speichern</button>
 </form>
 </body>
 </html>
