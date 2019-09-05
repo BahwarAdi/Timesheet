@@ -63,11 +63,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Exportiere Daten aus Tabelle Timesheet.user: ~2 rows (ungefähr)
+-- Exportiere Daten aus Tabelle Timesheet.user: ~4 rows (ungefähr)
+DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`userId`, `nachname`, `vorname`, `email`, `passwort`, `typ`, `soll`) VALUES
-	(1, 'admin', 'admin', 'testadmin@admin.com', '12345', 'admin', NULL),
-	(2, 'Test', 'User', 'TestUser@test.com', '12345', 'user', '08:20:00');
+	(1, 'admin', 'admin', 'testadmin@admin.com', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', NULL),
+	(2, 'Test', 'User', 'TestUser@test.com', '827ccb0eea8a706c4c34a16891f84e7b', 'user', '08:20:00'),
+	(3, 'adi', 'Bahwar', 'bahwar.adi@reamis.ch', '347c0f9ec90de0db8d7c0e306903c138', 'user', '140:00:00'),
+	(4, 'Peter', 'Hans', 'bahwar00@hotmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'user', '09:24:13');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Exportiere Struktur von Tabelle Timesheet.zeit
