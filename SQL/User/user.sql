@@ -11,6 +11,11 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Exportiere Datenbank Struktur für Timesheet
+CREATE DATABASE IF NOT EXISTS `Timesheet` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `Timesheet`;
+
 -- Exportiere Struktur von Tabelle Timesheet.user
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
@@ -24,7 +29,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Daten Export vom Benutzer nicht ausgewählt
+-- Exportiere Daten aus Tabelle Timesheet.user: ~4 rows (ungefähr)
+DELETE FROM `user`;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`userId`, `nachname`, `vorname`, `email`, `passwort`, `typ`, `soll`) VALUES
+	(1, 'admin', 'admin', 'testadmin@admin.com', '827ccb0eea8a706c4c34a16891f84e7b', 'admin', NULL),
+	(2, 'Test', 'User', 'TestUser@test.com', '827ccb0eea8a706c4c34a16891f84e7b', 'user', '08:20:00'),
+	(3, 'adi', 'Bahwar', 'bahwar.adi@reamis.ch', '347c0f9ec90de0db8d7c0e306903c138', 'user', '140:00:00'),
+	(4, 'Peter', 'Hans', 'bahwar00@hotmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'user', '09:24:13');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
