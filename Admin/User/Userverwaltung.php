@@ -2,7 +2,7 @@
 session_start();
 require_once('../../Config/config.php');
 
-if ($_POST['change'] == 'main'){
+if (isset($_POST['main'])){
     header('Location: ../../Pages/Mainpage.php');
 }
 ?>
@@ -125,6 +125,7 @@ if($_SESSION['user']=='admin'){
                 <button type="submit" name="loeschen" value="loeschen">Löschen</button>
                 <button type="submit" name="pasz" value="pasz">Passwort Zurücksetzen</button>
                 <button type="reset" name="Reset" value="Zurücksetzen">Zurücksetzen</button>
+                <button type="submit" name="main">Hauptseite</button>
 
                 <label>* Beim Hinzufügen ID Feld am Besten Frei lassen!</label>
                 <label>* Beim Löschen Nur ID Feld am Besten eingeben !</label>
