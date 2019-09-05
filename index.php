@@ -10,7 +10,8 @@ if(isset($_GET['index'])){
         $_SESSION['user'] = $res['typ'];
         $_SESSION['userId'] = $res['userId'];
         $_SESSION['nachname']= $res['nachname'];
-        header('Location: Admin/User/Userverwaltung.php');
+        $_SESSION['vorname']= $res['vorname'];
+        header('Location: Pages/Mainpage.php');
     }
     else{
         $errorMessage = " E-Mail oder Passwort Ungültig !!";

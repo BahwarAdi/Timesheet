@@ -1,3 +1,11 @@
+<?php
+session_start();
+require_once('../../Config/config.php');
+
+if ($_POST['change'] == 'main'){
+    header('Location: ../../Pages/Mainpage.php');
+}
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang='de'>
 <head>
@@ -8,14 +16,12 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 </head>
 <ul>
-    <p id="Pul">TimeSheet</p>
+    <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . $_SESSION['nachname']);?></p>
 </ul>
 <body
 
 <?php
 //
-session_start();
-require_once('../../Config/config.php');
 #region-Admin
 if($_SESSION['user']=='admin'){
     $id=$_POST['userId'];
@@ -152,7 +158,6 @@ if($_SESSION['user']=='user') {
             $errorMessage = "E-Mail Oder Passwort Darf Nicht lerr sein !!";
         }
     }
-
 ?>
 <div class="cont">
 
@@ -176,6 +181,10 @@ if($_SESSION['user']=='user') {
                 <button type="submit" name="aendern" value="aendern">ändern</button>
 
                 <button type="reset" name="Reset" value="Zurücksetzen">Zurücksetzen</button>
+
+
+                <button type="submit" name="change" value="main"> Zur Hauptseite zurück</button>
+
                 <p id="Perro"><?php if($errorMessage){echo ("$errorMessage");}?></p>
             </fieldset>
         </form>
