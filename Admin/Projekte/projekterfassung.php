@@ -1,7 +1,7 @@
 <?php
 session_start();
-if ($_POST['time'] == 'time') {
-    header('Location: ../../Pages/Stundenubersicht.php');
+if (isset($_POST['main'])) {
+    header('Location: ../../index.php');
 }
 require_once('../../Config/config.php');
 
@@ -118,7 +118,7 @@ if (isset($_POST['projekt'])) {
 
                             </table>
                         </div>
-                        <button type="submit" name="time" value="time"> Stundenübersicht </button>
+                        <button type="submit" name="main"> Hauptseite </button>
                     </div>
                 </fieldset>
             </form>

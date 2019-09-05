@@ -16,7 +16,7 @@ if ($_POST['change'] == 'main'){
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 </head>
 <ul>
-    <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . $_SESSION['nachname']);?></p>
+    <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
 </ul>
 <body
 

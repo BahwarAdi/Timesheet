@@ -3,9 +3,6 @@ session_start();
 if ($_POST['change'] == 'main'){
     header('Location: Mainpage.php');
 }
-if ($_POST['change'] == 'projekt'){
-    header('Location: ../Admin/Projekte/projekterfassung.php');
-}
 if ($_POST['change'] == 'time'){
     header('Location: ../Zeiterfassung/Zeiterfassung.php');
 }
@@ -88,7 +85,6 @@ $userid = $_SESSION['userId'];
                 <div class='bls'>
 
                     <button type="submit" name="change" value="main"> zur Hauptseite zurück </button>
-                    <button type="submit" name="change" value="projekt"> Projekte erfassen </button>
                     <button type="submit" name="change" value="time"> Stunden erfassen </button>
 
 
