@@ -429,7 +429,7 @@ footer {
     bottom: 0;
     background-color: #333;
     position: fixed;
-    align-items: center;
+
     display: flex;
     justify-content: center;
 }
@@ -459,7 +459,5 @@ ul{
 }
 #Pfo{
     color: #eafcff;
-    text-align: center;
-    bottom: -2em;
-    margin-right: 80em;
+    margin-right: 60%;
 }
