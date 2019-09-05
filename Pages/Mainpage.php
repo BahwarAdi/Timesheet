@@ -4,7 +4,7 @@ if ($_SESSION['user'] == "user"){
 
 }
 elseif ($_SESSION['user'] == "admin"){
-    header('Location: Pages/MainpageAdmin.php');
+    header('Location: ../Admin/User/Userverwaltung.php');
 }
 else{
     die('weg da');
