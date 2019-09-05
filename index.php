@@ -1,21 +1,16 @@
 <?php
 session_start();
-
-$mysqli = new mysqli('localhost','root','','Timesheet');
-if($mysqli->connect_errno){
-    echo("Fehler".$mysqli->connect_error());
-}
-
+require_once('Config/config.php');
 if(isset($_GET['index'])){
     $email=$_POST['email'];
-    $password=$_POST['password'];
+    $passwort= md5($_POST['passwort']);
     $user=$mysqli->query("SELECT * FROM user WHERE email = '$email'");
     $res=$user->fetch_assoc();
-    if($res !== false && $res !== null && $res['passwort'] == $password){
-        $_SESSION['user'] = $res['nachname'];
+    if($res !== false && $res !== null && $res['passwort'] == $passwort){
+        $_SESSION['user'] = $res['typ'];
         $_SESSION['userId'] = $res['userId'];
-        echo("Du bist als ".$_SESSION['user']. " angemeldet");
-        header('Location: http://localhost/Timesheet/Zeiterfassung/Zeiterfassung.php');
+        $_SESSION['nachname']= $res['nachname'];
+        header('Location: Admin/User/Userverwaltung.php');
     }
     else{
         $errorMessage = " E-Mail oder Passwort Ungültig !!";
@@ -41,15 +36,15 @@ if(isset($_GET['index'])){
         <form action="?index=1" method="POST">
             <fieldset>
                 <h2>LOGIN</h2>
-                <div class='bls'>
-                    <label for='id'>E-Mail</label>
-                    <input type="email" name="email" id='email'></input>
+                    <div class='bls'>
+                        <label for='id'>E-Mail</label>
+                        <input type="email" name="email" id='email'></input>
 
-                    <label for='password'>Passwort</label>
+                        <label for='passwort'>Passwort</label>
 
-                    <input type="password" name="password" id="password"></input>
+                        <input type="password" name="passwort" id="passwort"></input>
+                    </div>
 
-                </div>
                 <button type="submit" name="log" value="Log">Login</button>
                 <button type="reset" name="Reset" value="Zurücksetzen">Zurücksetzen</button>
                 <p id="Perro"><?php if($errorMessage){echo ("$errorMessage");}?></p>
