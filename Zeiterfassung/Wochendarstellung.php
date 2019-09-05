@@ -1,5 +1,5 @@
 <?php
-///----- Dateien Holen -----///
+///----- Dateien Holen -----/////
 require_once "../Config/config.php";
 require_once "Class_Zeit.php";
 session_start();

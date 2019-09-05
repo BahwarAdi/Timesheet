@@ -1,5 +1,5 @@
 <?php
-///----- Datei holen -----///
+///----- Datei holen -----/////
 session_start();
 require_once "../Config/config.php";
 if ($_POST['time'] == 'time'){
