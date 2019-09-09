@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_POST['main'])) {
-    header('Location: ../../index.php');
+    header('Location: ../../Pages/Mainpage.php');
 }
 require_once('../../Config/config.php');
 

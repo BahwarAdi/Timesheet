@@ -184,7 +184,7 @@ if($_SESSION['user']=='user') {
                 <button type="reset" name="Reset" value="Zurücksetzen">Zurücksetzen</button>
 
 
-                <button type="submit" name="change" value="main"> Zur Hauptseite zurück</button>
+                <button type="submit" name="main"> Zur Hauptseite zurück</button>
 
                 <p id="Perro"><?php if($errorMessage){echo ("$errorMessage");}?></p>
             </fieldset>
