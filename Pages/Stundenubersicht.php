@@ -25,7 +25,7 @@ $userid = $_SESSION['userId'];
 <ul>
     <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . $_SESSION['nachname']);?></p>
 </ul>
-<body
+<body>
 
 <div class="cont">
     <div class="fc">

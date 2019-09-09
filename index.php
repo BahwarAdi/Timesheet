@@ -30,7 +30,7 @@ if(isset($_GET['index'])){
 <ul>
     <p id="Pul">TimeSheet</p>
 </ul>
-<body
+<body>
 
 <div class="cont">
     <div class="fc">
