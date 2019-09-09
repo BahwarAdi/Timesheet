@@ -1,6 +1,6 @@
 <?php
 Class Zeit{
-
+//
 public function arbeitszeit($startzeit, $endzeit, $pause)
     {
     global $tot_time;
