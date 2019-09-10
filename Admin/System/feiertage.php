@@ -1,65 +1,81 @@
 <?php
 session_start();
-if (isset($_POST['main'])) {
-    header('Location: ../../Pages/Mainpage.php');
-}
 require_once('../../Config/config.php');
 
-if (isset($_POST['projekt'])) {
-    $projektName = $_POST['projektName'];
-    $projektBeschreibung = $_POST['projektBeschreibung'];
-
-    $mysqli->query("INSERT INTO projekt (projektname,beschreibung,archiviert) VALUES ('$projektName','$projektBeschreibung','false')");
-} elseif (isset($_POST['archiv'])) {
-    $projektName = $_POST['projektName'];
-
-    $mysqli->query("UPDATE projekt SET archiviert = 'true' WHERE projektname LIKE '$projektName'");
+if (isset($_POST['system'])) {
+    header('Location: system.php');
 }
+#region verarbeitung
 
+#region verarbeitung Feiertag Hinzufügen
+elseif (isset($_POST['addFeiertag'])) {
+    $feiertagName = $_POST['feiertagName'];
+    $feiertagDatum = $_POST['feiertagDatum'];
+    $feiertagZeit = $_POST['feiertagZeit'];
+
+    $mysqli->query("INSERT INTO feiertag (datum,feiertagName,arbeitszeit) VALUES ('$feiertagDatum','$feiertagName','$feiertagZeit')");
+}
+#endregion
+#region verarbeitung Feiertag Entfernen
+elseif (isset($_POST['delFeiertag'])) {
+    $feiertagId = $_POST['feiertagId'];
+
+
+    $mysqli->query("DELETE FROM feiertag WHERE feiertagId = '$feiertagId'");
+}
+#endregion
+#endregion
 ?>
-
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Timesheet Main Page</title>
+        <title>Feiertage</title>
         <link href="../../Style/StyleSheet.css" rel="stylesheet" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     </head>
     <ul>
-        <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . $_SESSION['nachname']);?></p>
+        <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . $_SESSION['nachname']); ?></p>
     </ul>
-    <body>
 
+    <body>
     <div class="cont">
         <div class="fc">
             <form action="" method="POST">
                 <fieldset>
-                    <h2>Projekterfassung</h2>
-                    <div class='bls'>
+                    <h2>Feiertage</h2>
+                    <div class="bls">
                         <div>
                             <form action="" method="post">
-                                <h3>Projekt Hinzufügen</h3>
+                                <h3>Feiertag Hinzufügen</h3>
                                 <table>
                                     <tr>
                                         <td>
-                                            Projektname:
+                                            Name:
                                         </td>
                                         <td>
-                                            <input type="text" name="projektName">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Beschreibung:
-                                        </td>
-                                        <td>
-                                            <input type="text" name="projektBeschreibung">
+                                            <input type="text" name="feiertagName">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="submit" name="projekt" value="Hinzufügen">
+                                            Datum:
+                                        </td>
+                                        <td>
+                                            <input type="date" name="feiertagDatum">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Arbeitszeit:
+                                        </td>
+                                        <td>
+                                            <input type="time" name="feiertagZeit">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="submit" name="addFeiertag" value="Hinzufügen">
                                         </td>
                                         <td>
                                             <input type="reset">
@@ -70,47 +86,56 @@ if (isset($_POST['projekt'])) {
                         </div>
                         <div>
                             <form action="" method="post">
-                                <h3>Projekt Archivieren</h3>
+                                <h3>Feiertag Entfernen</h3>
                                 <table>
                                     <tr>
                                         <td>
-                                            Projektname:
+                                            Id:
                                         </td>
                                         <td>
-                                            <input type="text" name="projektName">
+                                            <input type="number" name="feiertagId">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="submit" name="archiv" value="Hinzufügen">
+                                            <input type="submit" name="delFeiertag" value="Entfernen">
                                         </td>
                                         <td>
                                             <input type="reset">
                                         </td>
                                     </tr>
                                 </table>
+                                <button type="submit" name="system"> System</button>
                             </form>
                         </div>
                         <div>
                             <table>
                                 <tr>
                                     <th>
-                                        Projektname
+                                        Id
                                     </th>
                                     <th>
-                                        Beschreibung
+                                        Feiertag
+                                    </th>
+                                    <th>
+                                        Datum
+                                    </th>
+                                    <th>
+                                        Arbeitszeit
                                     </th>
                                 </tr>
 
                                 <?php
 
-                                $res = $mysqli->query("SELECT projektname, beschreibung FROM projekt WHERE archiviert LIKE 'false' ORDER BY projektId");
+                                $res = $mysqli->query("SELECT feiertagId,feiertagName, datum,arbeitszeit FROM feiertag ORDER BY feiertagId");
 
                                 while ($row = $res->fetch_assoc()) {
 
                                     echo('<tr>
-          <td>' . $row['projektname'] . '</td>
-          <td>' . $row['beschreibung'] . '</td>
+          <td>' . $row['feiertagId'] . '</td>
+          <td>' . $row['feiertagName'] . '</td>
+          <td>' . $row['datum'] . '</td>
+          <td>' . $row['arbeitszeit'] . '</td>
           </tr>');
 
                                 }
@@ -118,18 +143,14 @@ if (isset($_POST['projekt'])) {
 
                             </table>
                         </div>
-                        <button type="submit" name="main"> Hauptseite </button>
                     </div>
                 </fieldset>
             </form>
         </div>
-
     </div>
-
     </body>
     <footer>
         <p id="Pfo">Copyright reamis ag</p>
     </footer>
     </html>
-    </DOCTYPE>
 <?php

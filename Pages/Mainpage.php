@@ -1,19 +1,22 @@
 <?php
 session_start();
-if ($_SESSION['user'] == "user"){
+if ($_SESSION['user'] == "user" || $_SESSION['user'] == "admin"){
 
-}
-elseif ($_SESSION['user'] == "admin"){
-    header('Location: ../Admin/User/Userverwaltung.php');
 }
 else{
     die('weg da');
 }
 
-if ($_POST['change'] == 'change') {
+if (isset($_POST['userverwaltung'])) {
    header('Location: ../Admin/User/Userverwaltung.php');
 }
-if ($_POST['time'] == 'time') {
+if (isset($_POST['projekte'])) {
+   header('Location: ../Admin/Projekte/projekterfassung.php');
+}
+if (isset($_POST['system'])){
+    header('Location: ../Admin/System/system.php');
+}
+if (isset($_POST['time'])) {
     header('Location: Stundenubersicht.php');
 }
 ?>
@@ -29,7 +32,8 @@ if ($_POST['time'] == 'time') {
 <ul>
     <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . $_SESSION['nachname']);?></p>
 </ul>
-<body
+
+<body>
 
 <div class="cont">
     <div class="fc">
@@ -37,8 +41,21 @@ if ($_POST['time'] == 'time') {
             <fieldset>
                 <h2>Hauptseite</h2>
                     <div class='bls'>
-                <button type="submit" name="change" value="change"> Passwort und E-Mail ändern </button>
-                <button type="submit" name="time" value="time"> Stundenübersicht </button>
+                        <?php
+                        if ($_SESSION['user'] == "admin"){
+                            ?>
+                            <button type="submit" name="userverwaltung"> Userverwaltung </button>
+                            <button type="submit" name="projekte"> Projekte </button>
+                            <button type="submit" name="system"> System </button>
+                            <?php
+                        }
+                        elseif ($_SESSION['user'] == "user"){
+                            ?>
+                            <button type="submit" name="userverwaltung"> Userverwaltung </button>
+                            <button type="submit" name="time"> Stundenübersicht </button>
+                            <?php
+                        }
+                        ?>
                     </div>
 </fieldset>
 </form>
