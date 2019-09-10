@@ -1,10 +1,10 @@
 <?php
 session_start();
+require_once('../../Config/config.php');
+
 if (isset($_POST['main'])) {
     header('Location: ../../Pages/Mainpage.php');
 }
-require_once('../../Config/config.php');
-
 if (isset($_POST['projekt'])) {
     $projektName = $_POST['projektName'];
     $projektBeschreibung = $_POST['projektBeschreibung'];
