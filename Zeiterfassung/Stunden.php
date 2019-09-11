@@ -16,7 +16,7 @@ if (isset($_POST['alleb'])){
 if (isset($_POST['allepro'])){
     $projektId = '1,2,3,4,5,6,7,8,9';
 }
-$commall = 'SELECT * FROM zeit WHERE userId IN ('.$userId.') AND projektId IN ('.$projektId.') AND datum >= "'.$datumstrat.'" AND datum <= "'.$datumstop.'"';
+$commall = 'SELECT * FROM zeit WHERE username '.$userId.' AND projektname = '.$projektId.' AND datum >= "'.$datumstrat.'" AND datum <= "'.$datumstop.'"';
 if ($_POST['go'] == 'Anzeigen'){
     $query = $mysqli->query($commall);
 
@@ -54,14 +54,28 @@ if (isset($_POST['userverwaltung'])) {
         <div>
             <form action="stunden.php" method="post">
 
-                <input type="text" name="projekt" > Projeckt ID
-                <input type="text" name="user" > Benutzer ID
 
-                <input type="date" name="start" required> Von (Datum)
-                <input type="date" name="stop" required> Bis (Datum)
+                <select name="projekt"  required>
+                    <?php
+                    $commsel = "SELECT * FROM `projekt`WHERE archiviert = 'FALSE'";
+                    $query = $mysqli->query($commsel);
+                    while ($res = $query->fetch_array()){
+                        echo('<option>'. $res['projektname'] .'</option>');
+                    }
+                    ?>
+                </select>
+                <select name="user"  required>
+                    <?php
+                    $commsel = "SELECT * FROM user";
+                    $query = $mysqli->query($commsel);
+                    while ($res = $query->fetch_array()){
+                        echo('<option>'. $res['vorname'] .' '. $res['nachname'] .'</option>');
+                    }
+                    ?>
+                </select>
 
-                <input type="checkbox" name="alleb" > Alle Benzuer
-                <input type="checkbox" name="allepro" > Alle projekte
+                <input type="date" name="start" required>
+                <input type="date" name="stop" required>
 
                 <input type="submit" name="go" value="Anzeigen">
 
