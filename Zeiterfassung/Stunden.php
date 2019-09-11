@@ -34,6 +34,7 @@ if ($_POST['go'] == 'Anzeigen'){
         $stunden += $tot_time;
     }
 }
+echo $stunden;    //Total stunden pro projekt und user
 ?>
 
 
@@ -58,5 +59,3 @@ if ($_POST['go'] == 'Anzeigen'){
 </body>
 </html>
 
-<?php
-echo $stunden;    //Total stunden pro projekt und user
