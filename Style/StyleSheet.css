@@ -461,3 +461,8 @@ ul{
     color: #eafcff;
     margin-right: 60%;
 }
+
+.chart{
+    text-align: center;
+    align-items: center;
+}

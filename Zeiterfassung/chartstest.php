@@ -13,7 +13,8 @@ $z = new Zeit();
 /// ----- Test Charts ----- ///
 $query = $mysqli->query('SELECT * FROM zeit 
 LEFT JOIN user ON zeit.userId = user.userId
-LEFT JOIN projekt ON zeit.projektId = projekt.projektId
+LEFT JOIN projekt ON zeit.projektId = projekt.projektId 
+WHERE projekt.archiviert = \'FALSE\'
 
 ORDER BY zeit.projektId ASC, zeit.userId ASC;
 ');
@@ -32,7 +33,7 @@ foreach ($rows as $entry) {
 // Daten in Charts ausgeben
 foreach ($data as $name => $chart) {
     ?>
-    <div id="piechart"></div>
+    <div id="piechart<?php echo $name; ?>"></div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
@@ -43,8 +44,10 @@ foreach ($data as $name => $chart) {
                 ['User 6', <?php echo($chart['Peter']);?> ],
                 ['User 4', <?php echo($chart['Bertolf']);?> ],
             ]);
-            var options = {'title':'<?php echo($name);?>', 'width':550, 'height':400};
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var options = {'title':'<?php echo($name);?>',
+                colors: ['#333', '#4b4c50'],
+                'width':550, 'height':400};
+            var chart = new google.visualization.PieChart(document.getElementById('piechart<?php echo $name; ?>'));
             chart.draw(data, options);
         }
     </script>
