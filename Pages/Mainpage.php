@@ -20,6 +20,9 @@ if (isset($_POST['system'])){
 if (isset($_POST['time'])) {
     header('Location: Stundenubersicht.php');
 }
+if (isset($_POST['Charts'])) {
+    header('Location: Charts.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,12 +51,14 @@ if (isset($_POST['time'])) {
                             <button type="submit" name="userverwaltung"> Userverwaltung </button>
                             <button type="submit" name="projekte"> Projekte </button>
                             <button type="submit" name="system"> System </button>
+                            <button type="submit" name="Charts"> Projektübersicht </button>
                             <?php
                         }
                         elseif ($_SESSION['user'] == "user"){
                             ?>
                             <button type="submit" name="userverwaltung"> Userverwaltung </button>
                             <button type="submit" name="time"> Stundenübersicht </button>
+                            <button type="submit" name="Charts"> Projektübersicht </button>
                             <?php
                         }
                         ?>

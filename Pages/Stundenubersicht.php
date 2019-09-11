@@ -6,6 +6,9 @@ if ($_POST['change'] == 'main'){
 if ($_POST['change'] == 'time'){
     header('Location: ../Zeiterfassung/Zeiterfassung.php');
 }
+if ($_POST['change'] == 'timeshow'){
+    header('Location: ../Zeiterfassung/Stunden.php');
+}
 ///----- Dateien Holen -----///
 require_once "../Config/config.php";
 require_once "../Zeiterfassung/Class_Zeit.php";
@@ -34,7 +37,7 @@ $userid = $_SESSION['userId'];
                 <h2>Stundenübersicht</h2>
                 <td>
                     <?php
-                    $commsel = "SELECT * FROM `projekt`";
+                    $commsel = "SELECT * FROM `projekt`WHERE projekt.archiviert = 'FALSE'";
                     $query1 = $mysqli->query($commsel);
 
                     echo('<button type="submit" name="was" value="all"> Alle </button>');
@@ -65,7 +68,7 @@ $userid = $_SESSION['userId'];
                                     echo('<td>' . $tot_time . ' Stunden</td>');
                                     echo('<td>' . $res1['beschreibung'] . '</td>');
                                 }
-                            } elseif ($_POST['was'] = $_POST['was']) {
+                            } elseif (!$_POST['was'] || $_POST['was'] = $_POST['was']) {
                                 $query = $mysqli->query($comm);
                                 while ($res = $query->fetch_array()) {
                                     echo('<tr>');
@@ -86,6 +89,7 @@ $userid = $_SESSION['userId'];
 
                     <button type="submit" name="change" value="main"> zur Hauptseite zurück </button>
                     <button type="submit" name="change" value="time"> Stunden erfassen </button>
+                    <button type="submit" name="change" value="timeshow"> Stunden Anzeigen </button>
 
 
         </form>

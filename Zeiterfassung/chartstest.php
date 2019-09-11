@@ -13,7 +13,8 @@ $z = new Zeit();
 /// ----- Test Charts ----- ///
 $query = $mysqli->query('SELECT * FROM zeit 
 LEFT JOIN user ON zeit.userId = user.userId
-LEFT JOIN projekt ON zeit.projektId = projekt.projektId
+LEFT JOIN projekt ON zeit.projektId = projekt.projektId 
+WHERE projekt.archiviert = \'FALSE\'
 
 ORDER BY zeit.projektId ASC, zeit.userId ASC;
 ');
