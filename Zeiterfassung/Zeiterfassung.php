@@ -72,7 +72,7 @@ if($_POST['save'] == 'save')
                                 <td><input type="time" name="pause"></td>
                                 <td><select name="projekt"  required >
                                         <?php
-                                        $commsel = "SELECT * FROM `projekt`";
+                                        $commsel = "SELECT * FROM `projekt` WHERE archiviert LIKE 'false'";
                                         $query = $mysqli->query($commsel);
                                         while ($res = $query->fetch_array()){
                                             echo('<option>'. $res['projektname'] .'</option>');
