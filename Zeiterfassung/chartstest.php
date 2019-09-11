@@ -4,6 +4,7 @@
 
 <?php
 session_start();
+if(isset($_SESSION['user'])) {
 require_once "../Config/config.php";
 require_once "../Zeiterfassung/Class_Zeit.php";
 
@@ -56,3 +57,7 @@ foreach ($data as $name => $chart) {
 ?>
 </body>
 </html>
+<?php
+}else{
+    header('Location: ../index.php');
+}

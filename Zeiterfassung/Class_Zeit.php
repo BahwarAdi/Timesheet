@@ -1,22 +1,27 @@
 <?php
-Class Zeit{
-//
-public function arbeitszeit($startzeit, $endzeit, $pause)
-    {
-    global $tot_time;
+session_start();
+if(isset($_SESSION['user'])) {
+    Class Zeit{
 
-    $start_time = explode(":", $startzeit);
-    $end_time = explode(":", $endzeit);
-    $break = explode(":" ,$pause);
+        public function arbeitszeit($startzeit, $endzeit, $pause)
+            {
+            global $tot_time;
 
-    $start_time_stamp = mktime($start_time[0], $start_time[1]);
-    $end_time_stamp = mktime($end_time[0], $end_time[1]);
-    $break_stamp = $break[0]+($break[1]/60);
+            $start_time = explode(":", $startzeit);
+            $end_time = explode(":", $endzeit);
+            $break = explode(":" ,$pause);
 
-    $time_difference = ($end_time_stamp - $start_time_stamp)/3600;
-    $tot_time = $time_difference - ($break_stamp);
-    //echo($tot_time);
+            $start_time_stamp = mktime($start_time[0], $start_time[1]);
+            $end_time_stamp = mktime($end_time[0], $end_time[1]);
+            $break_stamp = $break[0]+($break[1]/60);
 
-        return $tot_time;
+            $time_difference = ($end_time_stamp - $start_time_stamp)/3600;
+            $tot_time = $time_difference - ($break_stamp);
+            //echo($tot_time);
+
+                return $tot_time;
+            }
     }
+}else{
+    header('Location: ../index.php');
 }

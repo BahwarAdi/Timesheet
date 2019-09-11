@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+if(isset($_SESSION['user'])) {
 if ($_SESSION['user'] == "user" || $_SESSION['user'] == "admin"){
 
 }
@@ -75,5 +75,8 @@ if (isset($_POST['Charts'])) {
 </footer>
 </html>
 </DOCTYPE>
-
+    <?php
+}else{
+    header('Location: ../index.php');
+}
 
