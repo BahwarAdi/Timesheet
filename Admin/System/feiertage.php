@@ -8,7 +8,7 @@ if (isset($_POST['system'])) {
 #region verarbeitung
 
 #region verarbeitung Feiertag Hinzufügen
-elseif (isset($_POST['addFeiertag'])) {
+if (isset($_POST['addFeiertag'])) {
     $feiertagName = $_POST['feiertagName'];
     $feiertagDatum = $_POST['feiertagDatum'];
     $feiertagZeit = $_POST['feiertagZeit'];
