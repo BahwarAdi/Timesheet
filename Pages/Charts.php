@@ -29,12 +29,15 @@ while ($res = $query->fetch_assoc()) {
 // Daten verarbeiten
 $data = array();
 foreach ($rows as $entry) {
-    $data[$entry['projektname']][$entry['nachname']] += $z->arbeitszeit($entry['start'], $entry['stop'], $entry['pause']);
+    $data[$entry['projektname']][$entry['vorname'].' '.$entry['nachname']] += $z->arbeitszeit($entry['start'], $entry['stop'], $entry['pause']);
 }
 // Daten in Charts ausgeben
-foreach ($data as $name => $chart) {
 ?>
-<!DOCTYPE html>
+
+
+
+
+
 <html>
 <head>
     <title>Timesheet Projektübersicht</title>
@@ -43,52 +46,91 @@ foreach ($data as $name => $chart) {
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 </head>
 <ul>
-    <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] .''. $_SESSION['nachname']);?></p>
+    <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . '' . $_SESSION['nachname']); ?></p>
 </ul>
 
 <body>
 
 <div class="cont">
+
+    <h2 style="font-size: 50px">Projektübersicht</h2>
+
+
+
     <div class="fc">
-        <form action="" method="POST">
-            <fieldset>
-                <h2>Projektübersicht</h2>
-                    <div class='bls'>
-                            <button type="submit" name="back"> zur Hauptseite </button>
-                    </div>
-                <table><tr>
-                <div class="chart" id="piechart<?php echo $name; ?>">
+
+
+        <?php
+        foreach ($data as $name => $chart) {
+
+            ?>
+
+
+        <fieldset>
+            <div class='bls'>
+            </div>
+            <div class="chart" id="piechart<?php echo $name; ?>">
 
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                    <div class="chart">
-                <script type="text/javascript">
-                    google.charts.load('current', {'packages':['corechart']});
-                    google.charts.setOnLoadCallback(drawChart);
-                    function drawChart() {
-                        var data = google.visualization.arrayToDataTable([
-                            ['Task', '<?php echo($name);?>'],
-                            ['User 6', <?php echo($chart['Peter']);?> ],
-                            ['User 4', <?php echo($chart['Bertolf']);?> ],
-                        ]);
-                        var options = {'title':'<?php echo($name);?>',
-                            colors: ['#333', '#4b4c50'],
-                            'backgroundColor': 'transparent',
-                            'width':500, 'height':500,};
+                <div class="chart">
 
-                        var chart = new google.visualization.PieChart(document.getElementById('piechart<?php echo $name; ?>'));
-                        chart.draw(data, options);
-                    }
-                </script>
-                    </tr></div>
-                </table>
+                    <script type="text/javascript">
+                        google.charts.load('current', {'packages': ['corechart']});
+                        google.charts.setOnLoadCallback(drawChart);
+
+                        function drawChart() {
+                            var data = google.visualization.arrayToDataTable([
+                                ['Task', '<?php echo($name);?>'],
+                               <?php
+                                foreach ($chart as $innername => $innerdata){
+                                    echo("['".$innername."', ".$innerdata."],");
+                                }
+
+                            ?>
+
+                            ]);
+                            var options = {
+                                'title': '<?php echo($name);?>',
+                                colors: ['#939CDC','#29368A','#465ADD'],
+                                'backgroundColor': 'transparent',
+                                'borderColor': 'black',
+                                'width': 400, 'height': 400,
+                                chartArea:{left:50,top:50,width:'75%',height:'75%'},
+                           legend: {position: 'bottom', textStyle: {color: 'white', fontSize: 12}},
+                                pieHole: 0.6,
+                                pieSliceBorderColor: 'transparent',
+                                titleTextStyle:{
+                                   color: 'white',
+                                   bold: true,
+                                   fontSize: 25,
+
+
+                                }
+                            };
+
+                            var chart = new google.visualization.PieChart(document.getElementById('piechart<?php echo $name; ?>'));
+                            chart.draw(data, options);
+                        }
+
+                    </script>
+
                 </div>
-                <?php
-                }
-                ?>
 
-</fieldset>
-</form>
-</div>>
+            </div>
+        </fieldset>
+            <?php
+        }
+        ?>
+    </div>
+
+
+    <div style="height:100px;">
+        <br />
+        <form method="post">
+            <button type="submit" name="back"> zur Hauptseite</button>
+        </form>
+    </div>
+</div>
 
 
 </body>
@@ -96,6 +138,5 @@ foreach ($data as $name => $chart) {
     <p id="Pfo">Copyright reamis ag</p>
 </footer>
 </html>
-</DOCTYPE>
 
 
