@@ -73,8 +73,8 @@ foreach ($data as $name => $chart) {
                         var options = {'title':'<?php echo($name);?>',
                             colors: ['#333', '#4b4c50'],
                             'backgroundColor': 'transparent',
-                            'width':500, 'height':500};
-                        'piehole : 50'
+                            'width':500, 'height':500,};
+
                         var chart = new google.visualization.PieChart(document.getElementById('piechart<?php echo $name; ?>'));
                         chart.draw(data, options);
                     }
