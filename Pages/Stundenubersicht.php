@@ -34,7 +34,7 @@ $userid = $_SESSION['userId'];
                 <h2>Stundenübersicht</h2>
                 <td>
                     <?php
-                    $commsel = "SELECT * FROM `projekt`";
+                    $commsel = "SELECT * FROM `projekt`WHERE projekt.archiviert = 'FALSE'";
                     $query1 = $mysqli->query($commsel);
 
                     echo('<button type="submit" name="was" value="all"> Alle </button>');
@@ -65,7 +65,7 @@ $userid = $_SESSION['userId'];
                                     echo('<td>' . $tot_time . ' Stunden</td>');
                                     echo('<td>' . $res1['beschreibung'] . '</td>');
                                 }
-                            } elseif ($_POST['was'] = $_POST['was']) {
+                            } elseif (!$_POST['was'] || $_POST['was'] = $_POST['was']) {
                                 $query = $mysqli->query($comm);
                                 while ($res = $query->fetch_array()) {
                                     echo('<tr>');
