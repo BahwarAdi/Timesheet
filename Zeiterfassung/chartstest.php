@@ -54,6 +54,17 @@ foreach ($data as $name => $chart) {
     </script>
 <?php
 }
+
+$daten = $rows;
+
+$fp = fopen('daten.csv', 'a');
+
+foreach ($daten as $arrays) {
+    fputcsv($fp, $arrays);
+}
+
+fclose($fp);
+
 ?>
 </body>
 </html>

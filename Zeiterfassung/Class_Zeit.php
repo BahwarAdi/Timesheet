@@ -3,8 +3,7 @@ Class Zeit{
 //
 public function arbeitszeit($startzeit, $endzeit, $pause)
     {
-    global $tot_time;
-
+        global $tot_time;
     $start_time = explode(":", $startzeit);
     $end_time = explode(":", $endzeit);
     $break = explode(":" ,$pause);
