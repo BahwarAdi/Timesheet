@@ -34,7 +34,7 @@ if (isset($_POST['go'])){
             $z->arbeitszeit($text['start'], $text['stop'], $text['pause'])
         );
     }
-    $fp = fopen('daten.csv', 'w');
+    $fp = fopen('../daten.csv', 'w');
     fputcsv($fp, $titel);
     foreach ($stunden as  $text) {
         fputcsv($fp, $text);
