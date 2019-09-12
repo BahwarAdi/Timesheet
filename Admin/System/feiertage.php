@@ -1,5 +1,6 @@
 <?php
 session_start();
+if(isset($_SESSION['user'])) {
 require_once('../../Config/config.php');
 
 if (isset($_POST['system'])) {
@@ -154,3 +155,7 @@ elseif (isset($_POST['delFeiertag'])) {
     </footer>
     </html>
 <?php
+
+    }else{
+        header('Location: ../../index.php');
+    }
