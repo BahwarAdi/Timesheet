@@ -30,8 +30,8 @@ if (isset($_POST['go'])){
             $text['datum'],
             $text['start'],
             $text['stop'],
-            $text['Pause'],
-            $z->arbeitszeit($text['start'], $text['stop'], $text['pause'])
+            $text['pause'],
+            $z->arbeitszeitcharts($text['start'], $text['stop'], $text['pause'])
         );
     }
     $fp = fopen('../daten.csv', 'w');
