@@ -114,7 +114,7 @@ if($_SESSION['user']=='admin'){
                     <input type="email" name="email" id='email'></input>
 
                     <label for='passwort'>Passwort</label>
-                    <input type="passwort" name="passwort" id="passwort"></input>
+                    <input type="password" name="passwort" id="passwort"></input>
 
                     <label for='typ'>Typ</label>
                     <input type="text" name="typ" id='typ'></input>
