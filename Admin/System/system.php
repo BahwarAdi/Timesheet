@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(isset($_SESSION['user'])) {
+
 require_once('../../Config/config.php');
 
 if (isset($_POST['main'])) {
@@ -93,3 +95,7 @@ if (isset($_POST['soll'])) {
 </footer>
 </html>
 <?php
+
+    }else{
+        header('Location: ../../index.php');
+    }

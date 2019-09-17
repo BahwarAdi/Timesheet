@@ -360,11 +360,10 @@ template {
 }
 .fc {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-basis: 100px;
-    flex-shrink: 1;
     bottom: 50%;
+    flex-direction: row ;
+    justify-content: space-evenly;
+    width:100%;
 }
 
 label {

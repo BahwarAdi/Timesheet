@@ -1,10 +1,11 @@
 <?php
 session_start();
+if(isset($_SESSION['user'])){
+require_once('../../Config/config.php');
+
 if (isset($_POST['main'])) {
     header('Location: ../../Pages/Mainpage.php');
 }
-require_once('../../Config/config.php');
-
 if (isset($_POST['projekt'])) {
     $projektName = $_POST['projektName'];
     $projektBeschreibung = $_POST['projektBeschreibung'];
@@ -133,3 +134,6 @@ if (isset($_POST['projekt'])) {
     </html>
     </DOCTYPE>
 <?php
+}else{
+    header('Location: ../../index.php');
+}

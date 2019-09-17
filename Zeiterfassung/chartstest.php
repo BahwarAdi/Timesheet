@@ -4,6 +4,7 @@
 
 <?php
 session_start();
+if(isset($_SESSION['user'])) {
 require_once "../Config/config.php";
 require_once "../Zeiterfassung/Class_Zeit.php";
 
@@ -11,13 +12,13 @@ require_once "../Zeiterfassung/Class_Zeit.php";
 $z = new Zeit();
 
 /// ----- Test Charts ----- ///
-$query = $mysqli->query('SELECT * FROM zeit 
+$query = $mysqli->query("SELECT * FROM zeit 
 LEFT JOIN user ON zeit.userId = user.userId
 LEFT JOIN projekt ON zeit.projektId = projekt.projektId 
-WHERE projekt.archiviert = \'FALSE\'
+WHERE projekt.archiviert = 'FALSE'
 
 ORDER BY zeit.projektId ASC, zeit.userId ASC;
-');
+");
 
 // Holt alle Daten in ein Array namens Rows.
 $rows = array();
@@ -46,13 +47,29 @@ foreach ($data as $name => $chart) {
             ]);
             var options = {'title':'<?php echo($name);?>',
                 colors: ['#333', '#4b4c50'],
-                'width':550, 'height':400};
+                'width':550, 'height':400,
+                pieHole: 0.5};
             var chart = new google.visualization.PieChart(document.getElementById('piechart<?php echo $name; ?>'));
             chart.draw(data, options);
         }
     </script>
 <?php
 }
+
+$daten = $rows;
+
+$fp = fopen('daten.csv', 'a');
+
+foreach ($daten as $arrays) {
+    fputcsv($fp, $arrays);
+}
+
+fclose($fp);
+
 ?>
 </body>
 </html>
+<?php
+}else{
+    header('Location: ../index.php');
+}
