@@ -17,9 +17,9 @@ if(isset($_SESSION['user'])) {
 
             $time_difference = ($end_time_stamp - $start_time_stamp)/3600;
             $tot_time = $time_difference - ($break_stamp);
-            //echo($tot_time);
+            echo($tot_time);
 
-                return $tot_time;
+               //return $tot_time;
             }
     }
 }else{

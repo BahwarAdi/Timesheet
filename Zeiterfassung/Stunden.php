@@ -2,29 +2,26 @@
 session_start();
 if(isset($_SESSION['user'])) {
     require_once "../Config/config.php";
-    require_once  "../Zeiterfassung/Class_Zeit.php";
+    require_once  "Class_Zeit.php";
 
     $z = new Zeit();
     $stunden = 0;
-
     $datumstrat = $_POST['start'];
     $datumstop = $_POST['stop'];
-    $userId = $_POST['user'];
-    $projektId = $_POST['projekt'];
-    if (isset($_POST['alleb'])){
-        $userId = '1,2,3,4,5,6,7,8,9';
-    }
-    if (isset($_POST['allepro'])){
-        $projektId = '1,2,3,4,5,6,7,8,9';
-    }
-    $commall = 'SELECT * FROM zeit WHERE username '.$userId.' AND projektname = '.$projektId.' AND datum >= "'.$datumstrat.'" AND datum <= "'.$datumstop.'"';
+    $username = $_POST['user'];
+    $projektname = $_POST['projekt'];
+
+    $commall = 'SELECT * FROM zeit 
+                LEFT JOIN user ON zeit.userId = user.userId 
+                LEFT JOIN projekt ON zeit.projektId = projekt.projektId 
+                WHERE user.vorname ="'.$username.'" AND projektname = "'.$projektname.'" AND datum >= "'.$datumstrat.'" AND datum <= "'.$datumstop.'"';
+
     if ($_POST['go'] == 'Anzeigen'){
         $query = $mysqli->query($commall);
-
         while ($res = $query->fetch_assoc()){
 
             $z->arbeitszeit($res['start'],$res['stop'],$res['pause']);
-            $stunden += $tot_time;
+            $stunden += $tot_time ;
         }
     }
     if (isset($_POST['userverwaltung'])) {
@@ -53,7 +50,7 @@ if(isset($_SESSION['user'])) {
                     <br class='bls' align="center">
                         <h2>Stunden Anzeigen</h2>
             <div>
-                <form action="stunden.php" method="post">
+                <form action="" method="post">
 
 
                     <select name="projekt"  required>
@@ -70,7 +67,7 @@ if(isset($_SESSION['user'])) {
                         $commsel = "SELECT * FROM user";
                         $query = $mysqli->query($commsel);
                         while ($res = $query->fetch_array()){
-                            echo('<option>'. $res['vorname'] .' '. $res['nachname'] .'</option>');
+                            echo('<option>'. $res['vorname'].'</option>');
                         }
                         ?>
                     </select>
