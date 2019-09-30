@@ -33,41 +33,40 @@ if (isset($_POST['Charts'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 </head>
-<ul>
-    <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . $_SESSION['nachname']);?></p>
-</ul>
+
 
 <body>
-
-<div class="cont">
-    <div class="fc">
-        <form action="" method="POST">
-            <fieldset>
-                <h2>Hauptseite</h2>
-                    <div class='bls'>
+<nav>
+    <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
+    <p id="Pul">TimeSheet</p>
+    <a id="logout" href='./../index.php'><button id="logoutb">Logout</button></a>
+</nav>
+    <div class="InContainer">
+            <form class="MainIt" action="" method="POST">
+                    <h2>Main</h2>
+                        <div class="MainRes">
                         <?php
                         if ($_SESSION['user'] == "admin"){
                             ?>
-                            <button type="submit" name="userverwaltung"> Userverwaltung </button>
-                            <button type="submit" name="projekte"> Projekte </button>
-                            <button type="submit" name="system"> System </button>
-                            <button type="submit" name="Charts"> Projektübersicht </button>
+                            <button class="inputr" id="BuSize" type="submit" name="userverwaltung"> Userverwaltung </button>
+                            <button class="inputr" id="BuSize" type="submit" name="projekte"> Projekte </button>
+
+                            <button class="inputr" id="BuSize" type="submit" name="system"> System </button>
+                            <button class="inputr" id="BuSize" type="submit" name="Charts"> Projektübersicht </button>
                             <?php
                         }
                         elseif ($_SESSION['user'] == "user"){
                             ?>
-                            <button type="submit" name="userverwaltung"> Userverwaltung </button>
-                            <button type="submit" name="time"> Stundenübersicht </button>
-                            <button type="submit" name="Charts"> Projektübersicht </button>
+                            <button class="inputr" id="BuSize" type="submit" name="userverwaltung"> Userverwaltung </button>
+                            <button class="inputr" id="BuSize" type="submit" name="time"> Stundenübersicht </button>
+                            <button class="inputr" id="BuSize" type="submit" name="Charts"> Projektübersicht </button>
                             <?php
                         }
                         ?>
-                    </div>
-</fieldset>
-</form>
-</div>
+                        </div>
+            </form>
 
-</div>
+    </div>
 
 </body>
 <footer>
