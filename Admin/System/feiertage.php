@@ -12,9 +12,8 @@ if (isset($_POST['system'])) {
 if (isset($_POST['addFeiertag'])) {
     $feiertagName = $_POST['feiertagName'];
     $feiertagDatum = $_POST['feiertagDatum'];
-    $feiertagZeit = $_POST['feiertagZeit'];
 
-    $mysqli->query("INSERT INTO feiertag (datum,feiertagName,arbeitszeit) VALUES ('$feiertagDatum','$feiertagName','$feiertagZeit')");
+    $mysqli->query("INSERT INTO feiertag (datum,feiertagName) VALUES ('$feiertagDatum','$feiertagName')");
 }
 #endregion
 #region verarbeitung Feiertag Entfernen
@@ -68,14 +67,6 @@ elseif (isset($_POST['delFeiertag'])) {
                                     </tr>
                                     <tr>
                                         <td>
-                                            Arbeitszeit:
-                                        </td>
-                                        <td>
-                                            <input type="time" name="feiertagZeit">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
                                             <input type="submit" name="addFeiertag" value="Hinzufügen">
                                         </td>
                                         <td>
@@ -121,14 +112,11 @@ elseif (isset($_POST['delFeiertag'])) {
                                     <th>
                                         Datum
                                     </th>
-                                    <th>
-                                        Arbeitszeit
-                                    </th>
                                 </tr>
 
                                 <?php
 
-                                $res = $mysqli->query("SELECT feiertagId,feiertagName, datum,arbeitszeit FROM feiertag ORDER BY feiertagId");
+                                $res = $mysqli->query("SELECT feiertagId,feiertagName, datum FROM feiertag ORDER BY feiertagId");
 
                                 while ($row = $res->fetch_assoc()) {
 
@@ -136,7 +124,6 @@ elseif (isset($_POST['delFeiertag'])) {
           <td>' . $row['feiertagId'] . '</td>
           <td>' . $row['feiertagName'] . '</td>
           <td>' . $row['datum'] . '</td>
-          <td>' . $row['arbeitszeit'] . '</td>
           </tr>');
 
                                 }

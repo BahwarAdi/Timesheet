@@ -102,25 +102,25 @@ if($_SESSION['user']=='admin'){
                 <h2>User Verwaltung</h2>
                 <div class='bls'>
                     <label for='userId'>ID</label>
-                    <input type="number" name="userId" id='userId'></input>
+                    <input type="number" name="userId" id='userId'>
 
                     <label for='nachname'>Nachname</label>
-                    <input type="text" name="nachname" id='nachname'></input>
+                    <input type="text" name="nachname" id='nachname'>
 
                     <label for='vorname'>Vorname</label>
-                    <input type="text" name="vorname" id='vorname'></input>
+                    <input type="text" name="vorname" id='vorname'>
 
                     <label for='id'>E-Mail</label>
-                    <input type="email" name="email" id='email'></input>
+                    <input type="email" name="email" id='email'>
 
                     <label for='passwort'>Passwort</label>
-                    <input type="passwort" name="passwort" id="passwort"></input>
+                    <input type="password" name="passwort" id="passwort">
 
                     <label for='typ'>Typ</label>
-                    <input type="text" name="typ" id='typ'></input>
+                    <input type="text" name="typ" id='typ'>
 
                     <label for='soll'>Soll</label>
-                    <input type="text" name="soll" id='soll'></input>
+                    <input type="text" name="soll" id='soll'>
 
                 </div>
                 <button type="submit" name="hinzu" value="hinzu">Hinzufügen</button>
@@ -175,10 +175,10 @@ if($_SESSION['user']=='user') {
                 <div class='bls'>
 
                     <label for='id'>Neue E-Mail</label>
-                    <input type="email" name="email" id='email'></input>
+                    <input type="email" name="email" id='email'>
 
                     <label for='passwort'>Neue Passwort</label>
-                    <input type="password" name="passwort" id="passwort"></input>
+                    <input type="password" name="passwort" id="passwort">
 
                 </div>
                 <button type="submit" name="aendern" value="aendern">ändern</button>

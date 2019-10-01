@@ -29,7 +29,7 @@ while ($res = $query->fetch_assoc()) {
 // Daten verarbeiten
 $data = array();
 foreach ($rows as $entry) {
-    $data[$entry['projektname']][$entry['vorname'].' '.$entry['nachname']] += $z->arbeitszeit($entry['start'], $entry['stop'], $entry['pause']);
+    $data[$entry['projektname']][$entry['vorname'].' '.$entry['nachname']] += $z->arbeitszeitcharts($entry['start'], $entry['stop'], $entry['pause']);
 }
 // Daten in Charts ausgeben
 ?>
@@ -82,6 +82,7 @@ foreach ($rows as $entry) {
                             var data = google.visualization.arrayToDataTable([
                                 ['Task', '<?php echo($name);?>'],
                                <?php
+
                                 foreach ($chart as $innername => $innerdata){
                                     echo("['".$innername."', ".$innerdata."],");
                                 }
