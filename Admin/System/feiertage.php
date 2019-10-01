@@ -36,11 +36,10 @@ if (isset($_SESSION['user'])) {
     </head>
 
     <body>
-    <nav>
-        <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
-        <a id="logout" href='../../index.php'>
-            <button id="logoutb">Logout</button>
-        </a>
+    <nav class="Nav">
+        <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
+        <p id="Pul">TimeSheet </p>
+        <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
     </nav>
     <div class="cont">
         <div class="fc">

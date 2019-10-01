@@ -41,10 +41,11 @@ if(isset($_SESSION['user'])) {
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     </head>
 <body>
-    <nav>
-        <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
-        <a id="logout" href='./../index.php'><button id="logoutb">Logout</button></a>
-    </nav>
+<nav class="Nav">
+    <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
+    <p id="Pul">TimeSheet </p>
+    <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+</nav>
     <div class="flex">
         <div class="flexitem">
 
