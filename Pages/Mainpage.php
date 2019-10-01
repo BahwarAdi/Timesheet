@@ -36,7 +36,7 @@ if (isset($_POST['Charts'])) {
 
 
 <body>
-<nav>
+<nav class="Nav">
     <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
     <p id="Pul">TimeSheet</p>
     <a id="logout" href='./../index.php'><button id="logoutb">Logout</button></a>

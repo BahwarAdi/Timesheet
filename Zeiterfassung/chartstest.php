@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <body>
-
+<nav>
+    <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
+    <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+</nav>
 <?php
 session_start();
 if(isset($_SESSION['user'])) {

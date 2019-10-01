@@ -17,10 +17,13 @@ if (isset($_POST['main'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 </head>
-<ul>
-    <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
-</ul>
+
 <body>
+<nav class="Nav">
+    <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
+    <p id="Pul">TimeSheet </p>
+    <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+</nav>
 
 <?php
 //
@@ -95,46 +98,46 @@ if($_SESSION['user']=='admin'){
 
     <div class="fc">
 
-        <form action="?Userverwaltung.php=1" method="POST">
-            <fieldset>
-                <label><?php echo ("User ID : " .$_SESSION['userId']); ?></label>
-                <label><?php echo ("Username : " .$_SESSION['nachname']); ?></label>
+        <form  class="adminform" action="?Userverwaltung.php=1" method="POST">
+
+                <label style="margin-top: 10px"><?php echo ("User ID : " .$_SESSION['userId']); ?></label>
                 <h2>User Verwaltung</h2>
-                <div class='bls'>
+                <div class='bls' style="display: flex; flex-direction: column">
                     <label for='userId'>ID</label>
-                    <input type="number" name="userId" id='userId'>
+                    <input class="inputr" type="number" name="userId" id='userId'></input>
 
                     <label for='nachname'>Nachname</label>
-                    <input type="text" name="nachname" id='nachname'>
+                    <input class="inputr" type="text" name="nachname" id='nachname'></input>
 
                     <label for='vorname'>Vorname</label>
-                    <input type="text" name="vorname" id='vorname'>
+                    <input class="inputr" type="text" name="vorname" id='vorname'></input>
 
                     <label for='id'>E-Mail</label>
-                    <input type="email" name="email" id='email'>
+                    <input class="inputr" type="email" name="email" id='email'></input>
 
                     <label for='passwort'>Passwort</label>
-                    <input type="password" name="passwort" id="passwort">
+                    <input class="inputr" type="passwort" name="passwort" id="passwort"></input>
 
                     <label for='typ'>Typ</label>
-                    <input type="text" name="typ" id='typ'>
+                    <input class="inputr" type="text" name="typ" id='typ'></input>
 
                     <label for='soll'>Soll</label>
-                    <input type="text" name="soll" id='soll'>
-
+                    <input class="inputr" type="text" name="soll" id='soll'></input>
                 </div>
-                <button type="submit" name="hinzu" value="hinzu">Hinzufügen</button>
-                <button type="submit" name="loeschen" value="loeschen">Löschen</button>
-                <button type="submit" name="pasz" value="pasz">Passwort Zurücksetzen</button>
-                <button type="reset" name="Reset" value="Zurücksetzen">Zurücksetzen</button>
-                <button type="submit" name="main">Hauptseite</button>
-
+            <div style="display: flex; justify-content: space-evenly; flex-direction: column; height: 20vh">
+                <button class="loginbut" type="submit" name="hinzu" value="hinzu">Hinzufügen</button>
+                <button class="loginbut"  type="submit" name="loeschen" value="loeschen">Löschen</button>
+                <button class="loginbut" type="submit" name="pasz" value="pasz">Passwort Zurücksetzen</button>
+                <button class="loginbut" type="reset" name="Reset" value="Zurücksetzen">Zurücksetzen</button>
+                <button class="loginbut" type="submit" name="main">Hauptseite</button>
+            </div>
+                <div style= "display:flex; flex-direction: column">
                 <label>* Beim Hinzufügen ID Feld am Besten Frei lassen!</label>
                 <label>* Beim Löschen Nur ID Feld am Besten eingeben !</label>
                 <label>* Beim Psswort Zurücksetzen Nur E-Mail Feld eingeben !</label>
                 <p id="Perro"><?php if($errorMessage){echo ("$errorMessage");}?></p>
                 <p id="Pmel"><?php if($meldung){echo ("$meldung");}?></p>
-            </fieldset>
+            </div>
         </form>
 
     </div>
@@ -166,30 +169,24 @@ if($_SESSION['user']=='user') {
 
     <div class="fc">
 
-        <form action="?Userverwaltung=1" method="POST">
-            <fieldset>
-                <label><?php echo ("User ID : " .$_SESSION['userId']); ?></label>
-                <label><?php echo ("Username : " .$_SESSION['nachname']); ?></label>
+        <form class="userform" action="?Userverwaltung=1" method="POST">
 
                 <h2>User ändern</h2>
-                <div class='bls'>
+                <div class='plsUser'>
 
                     <label for='id'>Neue E-Mail</label>
-                    <input type="email" name="email" id='email'>
+                    <input class="inputr" type="email" name="email" id='email'></input>
 
                     <label for='passwort'>Neue Passwort</label>
-                    <input type="password" name="passwort" id="passwort">
+                    <input class="inputr" type="password" name="passwort" id="passwort"></input>
+
 
                 </div>
-                <button type="submit" name="aendern" value="aendern">ändern</button>
+                <button class="loginbut" type="submit" name="aendern" value="aendern">ändern</button>
+                <button class="loginbut" type="reset" name="Reset" value="Zurücksetzen">Zurücksetzen</button>
+                <button class="loginbut" type="submit" name="main"> Zur Hauptseite zurück</button>
+            <p id="Perro"><?php if($errorMessage){echo ("$errorMessage");}?></p>
 
-                <button type="reset" name="Reset" value="Zurücksetzen">Zurücksetzen</button>
-
-
-                <button type="submit" name="main"> Zur Hauptseite zurück</button>
-
-                <p id="Perro"><?php if($errorMessage){echo ("$errorMessage");}?></p>
-            </fieldset>
         </form>
 
     </div>
@@ -200,13 +197,13 @@ if($_SESSION['user']=='user') {
 }
 #endregion-User
 ?>
-
-</body>
 <footer>
     <p id="Pfo">Copyright reamis ag</p>
 </footer>
+</body>
+
 </html>
-</DOCTYPE>
+
 <?php
 }else{
     header('Location: ../../index.php');

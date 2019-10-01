@@ -30,62 +30,34 @@ if (isset($_POST['soll'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 </head>
-<ul>
-    <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . $_SESSION['nachname']); ?></p>
-</ul>
+
 
 <body>
+<nav>
+    <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
+    <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+</nav>
 <div class="cont">
     <div class="fc">
-        <form action="" method="POST">
-            <fieldset>
+        <form class="systemform" action="" method="POST">
                 <h2>System</h2>
+                <h3>Konfiguration Tagessoll</h3>
                 <div class="bls">
-                    <div>
-                        <form action="" method="post">
-                            <h3>Konfiguration Tagessoll</h3>
-                            <table>
-                                <tr>
-                                    <td>
-                                        Nachname User:
-                                    </td>
-                                    <td>
-                                        <input type="text" name="nachname">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Vorname User:
-                                    </td>
-                                    <td>
-                                        <input type="text" name="vorname">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Tagessoll:
-                                    </td>
-                                    <td>
-                                        <input type="time" name="tagessoll">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="submit" name="soll" value="Festlegen">
-                                    </td>
-                                    <td>
-                                        <input type="reset">
-                                    </td>
-                                </tr>
-                            </table>
-                        </form>
-                    </div>
-                    <div>
-                        <button type="submit" name="main"> Hauptseite</button>
-                        <button type="submit" name="feiertage">Feiertage</button>
-                    </div>
+                                <label for="usernachname">Users Nachname</label>
+                                <input class="inputr" type="text" name="nachname" id="usernachname">
+
+                                <label for="uservorname">Users Vorname</label>
+                                <input class="inputr" type="text" name="vorname" id="uservorname">
+
+                                <label for="Tagessoll">Tagessoll</label>
+                                <input class="inputr" id="tagessoll" type="time" name="tagessoll" id="tagessoll">
+
+                    <input class="loginbut" type="submit" name="soll" value="Festlegen">
+                    <input class="loginbut" type="reset">
+
+                        <button class="loginbut" type="submit" name="main"> Hauptseite</button>
+                        <button class="loginbut" type="submit" name="feiertage">Feiertage</button>
                 </div>
-            </fieldset>
         </form>
     </div>
 </div>

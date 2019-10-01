@@ -43,11 +43,12 @@ if(isset($_SESSION['user'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     </head>
-    <ul>
-        <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] . $_SESSION['nachname']);?></p>
-    </ul>
-    <body>
 
+    <body>
+    <nav>
+        <p id="Pul">TimeSheet Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
+        <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+    </nav>
     <div class="cont">
         <div class="fc">
             <form action="" method="POST">

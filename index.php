@@ -30,7 +30,7 @@ if(isset($_GET['index'])){
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 </head>
 <body>
-    <nav>
+    <nav class="InNav">
         <p id="Pul">TimeSheet</p>
     </nav>
     <div class="InContainer">
