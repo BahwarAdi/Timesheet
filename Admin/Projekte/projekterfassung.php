@@ -34,9 +34,8 @@ if (isset($_SESSION['user'])) {
         <p id="Pul">TimeSheet </p>
         <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
     </nav>
-    <div class="I">
-        <div class="fc">
-            <form class="projekteerform" action="" method="POST">
+    <div class="InContainer">
+            <form class="" action="" method="POST">
                 <h2>Projekterfassung</h2>
                     <div class='plsProjekte'>
                         <div class=feiertageent>
@@ -92,7 +91,7 @@ if (isset($_SESSION['user'])) {
                         </div>
                     </div>
             </form>
-        </div>
+
     </div>
 
     </body>

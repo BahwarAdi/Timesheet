@@ -51,7 +51,7 @@ foreach ($rows as $entry) {
 <nav class="Nav">
     <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
     <p id="Pul">TimeSheet </p>
-    <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+    <a id="logout" href='./../index.php'><button id="logoutb">Logout</button></a>
 </nav>
 
 <div class="cont" >
@@ -80,7 +80,7 @@ foreach ($rows as $entry) {
                                                     ['Task', '<?php echo($name);?>'],
                                                    <?php
                                                         foreach ($chart as $innername => $innerdata){
-                                                            echo("['".$innername."', ".$innerdata."],");
+                                                            echo("['.$innername.','.$innerdata.']");
                                                         }
                                                    ?>
                                                 ]);
