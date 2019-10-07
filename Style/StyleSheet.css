@@ -567,9 +567,10 @@ template {
 .fc {
     display: flex;
     bottom: 50%;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    flex-wrap: wrap;
 }
 
 input, select {
