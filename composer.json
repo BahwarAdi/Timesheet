@@ -1,0 +1,12 @@
+{
+    "name": "root/timesheet",
+    "authors": [
+        {
+            "name": "abc abc",
+            "email": "abc@abc.abc"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.8"
+    }
+}
