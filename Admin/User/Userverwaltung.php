@@ -20,11 +20,17 @@ if (isset($_SESSION['user'])) {
 
     <body>
     <nav class="Nav">
-        <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
-        <p id="Pul">TimeSheet </p>
-        <a id="logout" href='../../index.php'>
-            <button id="logoutb">Logout</button>
-        </a>
+        <div class='placeholder'></div>
+        <div class='innerdiv'>
+            <div class='innderdivflex'>
+                <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
+                <p id="Pul">TimeSheet </p>
+                <a id="logout" href='../../index.php'>
+                    <button id="logoutb">Logout</button>
+                </a>
+            </div>
+        </div>
+        <div class='placeholder'></div>
     </nav>
     <div class="PlHa"></div>
     <?php
@@ -97,7 +103,6 @@ if (isset($_SESSION['user'])) {
         }
         ?>
         <div class="InContainer">
-
             <form class="UserVerwaItem" action="?Userverwaltung.php=1" method="POST">
                 <label style="margin-top: 10px"><?php echo("User ID : " . $_SESSION['userId']); ?></label>
                 <h2>User Verwaltung</h2>
