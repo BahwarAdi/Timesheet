@@ -170,33 +170,23 @@ if (isset($_SESSION['user'])) {
         }
         ?>
         <div class="cont">
-
-            <div class="fc">
-
-                <form class="userform" action="?Userverwaltung=1" method="POST">
-
-                    <h2>User ändern</h2>
-                    <div class='plsUser'>
-
-                        <label for='id'>Neue E-Mail</label>
-                        <input class="inputr" type="email" name="email" id='email'></input>
-
-                        <label for='passwort'>Neue Passwort</label>
-                        <input class="inputr" type="password" name="passwort" id="passwort"></input>
-
-
-                    </div>
-                    <button class="loginbut" type="submit" name="aendern" value="aendern">ändern</button>
-                    <button class="loginbut" type="reset" name="Reset" value="Zurücksetzen">Zurücksetzen</button>
-                    <button class="loginbut" type="submit" name="main"> Zur Hauptseite zurück</button>
-                    <p id="Perro"><?php if ($errorMessage) {
-                            echo("$errorMessage");
-                        } ?></p>
-
-                </form>
-
-            </div>
-
+            <form class="userform" action="?Userverwaltung=1" method="POST">
+                <h2>User ändern</h2>
+                <label for='id' class="labelimput">Neue E-Mail</label>
+                <input class="inputr1" type="email" name="email" id='email'>
+                <label for='passwort' class="labelimput">Neue Passwort</label>
+                <input class="inputr1" type="password" name="passwort" id="passwort">
+                <button class="loginbut" type="submit" name="aendern" value="aendern" style="align-self: center">ändern</button>
+                <button class="loginbut" type="reset" name="Reset" value="Zurücksetzen" style="align-self: center">Zurücksetzen</button>
+                <button class="loginbut" type="submit" name="main" style="align-self: center"> Zur Hauptseite zurück</button>
+                <p id="Perro">
+                    <?php
+                    if ($errorMessage) {
+                        echo("$errorMessage");
+                    }
+                    ?>
+                </p>
+            </form>
         </div>
         <?php
 

@@ -572,6 +572,19 @@ template {
     overflow-y: auto;
     flex-wrap: wrap;
 }
+.fc1 {
+    width: 500px;
+    height: 300px;
+    display: flex;
+
+}
+@media screen and (max-width: 550px) {
+    .fc1 {
+        width: 300px;
+        height: 300px;
+        display: flex;
+    }
+}
 
 input, select {
     margin-bottom: 1em;
@@ -600,8 +613,9 @@ input, select {
 }
 
 .plsUser {
-    display: grid;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .feiertagehinzu {
@@ -715,6 +729,12 @@ footer {
 
 .inputr {
     border-radius: 6px;
+}
+
+.inputr1 {
+    border-radius: 6px;
+    width: 200px;
+    align-self: center;
 
 }
 
@@ -742,7 +762,38 @@ footer {
 .userform {
     background-color: #718096;
     border-radius: 6px;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
+
+.labelimput{
+    margin-left: 100px;
+}
+@media screen and (max-width: 550px) {
+
+    .userform {
+        background-color: #718096;
+        border-radius: 6px;
+        width: 300px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .labelimput{
+        margin-left: 50px;
+    }
+    .loginbut {
+        border-radius: 12px;
+        width: 100px;
+        max-height: 60px;
+        font-size: 10px;
+    }
+}
+
 
 .systemform {
     background-color: #718096;
@@ -808,13 +859,6 @@ table tr:last-child td:first-child {
     border-radius: 6px;
 }
 
-.Tablescroll {
-    width: auto;
-    height: 113px;
-    overflow: auto;
-    display: grid;
-    border-radius: 6px;
-}
 
 .feiertageform {
     background-color: #718096;
@@ -829,8 +873,51 @@ table tr:last-child td:first-child {
 .stundenueberform {
     background-color: #718096;
     border-radius: 6px;
-
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 550px;
+    justify-content: space-evenly;
 }
+
+.Tablescroll {
+    width: 500px;
+    height: 300px;
+    overflow: auto;
+    border-radius: 6px;
+    align-self: center;
+}
+.loschen{
+    border-radius: 12px;
+    font-size: 15px;
+    height: 30px;
+}
+@media screen and (max-width: 550px) {
+    .stundenueberform {
+        background-color: #718096;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        height: 600px;
+        width: 300px;
+        justify-content: space-evenly;
+    }
+
+    .Tablescroll {
+        width: 260px;
+        height: 300px;
+        overflow: auto;
+        border-radius: 6px;
+        align-self: center;
+        font-size: 10px;
+    }
+    .loschen{
+        border-radius: 12px;
+        font-size: 10px;
+        height: 30px;
+    }
+}
+
 
 ::-webkit-scrollbar {
     width: 12px;
