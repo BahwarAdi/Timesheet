@@ -34,19 +34,24 @@ if (isset($_SESSION['user'])) {
     </nav>
     <div class="cont">
         <div class="fc">
-            <form class="stundenueberform" action="" method="POST">
+            <form class="stundenueberform" action="" method="POST" >
                 <h2>Stundenübersicht</h2>
+
+                 <div style="display: flex; justify-content: space-evenly">
                 <?php
                     $commsel = "SELECT * FROM `projekt`WHERE projekt.archiviert = 'FALSE'";
                     $query1 = $mysqli->query($commsel);
-                    echo('<button class="loginbut" type="submit" name="was" value="all"> Alle </button>');
+                    echo('<button class="loschen" type="submit" name="was" value="all"> Alle </button>');
                         while ($res = $query1->fetch_array()) {
                             $name = $res['projektname'];
                             $id = $res['projektId'];
-                            echo('<button class="loginbut" type="submit" name="was" value=' . $res['projektId'] . '> ' . $name . ' </button>');
+                            echo('<button class="loschen" type="submit" name="was" value=' . $res['projektId'] . '> ' . $name . ' </button>');
                         }
                 ?>
-                <table class="Tablescroll">
+                 </div>
+
+                <div class="Tablescroll">
+                <table class="table">
                     <tr>
                         <th>Zeit ID</th> <th>Datum</th> <th>Stunden</th> <th>Beschreibung</th>
                     </tr>
@@ -65,7 +70,7 @@ if (isset($_SESSION['user'])) {
                                   $endzeit = $res1['stop'];            ///Rechnen zeit
                                   $pause = $res1['pause'];            ///Rechnen zeit
                                   $s->arbeitszeit($startzeit, $endzeit, $pause);
-                                  echo('<td>' . $tot_time . ' Stunden</td>');
+                                  echo('<td>' . $tot_time . ' H</td>');
                                   echo('<td>' . $res1['beschreibung'] . '</td>');
                               }
                         } elseif (!$_POST['was'] || $_POST['was'] = $_POST['was']) {
@@ -78,21 +83,25 @@ if (isset($_SESSION['user'])) {
                                  $endzeit = $res['stop'];            ///Rechnen zeit
                                  $pause = $res['pause'];            ///Rechnen zeit
                                  $s->arbeitszeit($startzeit, $endzeit, $pause);
-                                 echo('<td>' . $tot_time . ' Stunden</td>');
+                                 echo('<td>' . $tot_time . ' H</td>');
                                  echo('<td>' . $res['beschreibung'] . '</td>');
                             }
                         }
                       ?>
                 </table>
-                        <div>
-                         <button class ="loginbut" type="submit" name="change" value="main"> zur Hauptseite zurück</button>
-                         <button class="loginbut" type="submit" name="change" value="time"> Stunden erfassen</button>
-                         <button class="loginbut" type="submit" name="change" value="timeshow"> Stunden Anzeigen</button>
-                        </div>
-                <div>
-                    <input class="inputr" type="number" name="entf" placeholder="Stunden Nummer">
-                    <button class="loginbut" type="submit" name="del" value="del">Löschen</button>
                 </div>
+
+                    <div style="align-self: center; display: flex;" >
+                         <button class ="loschen" type="submit" name="change" value="main"> zur Hauptseite zurück</button>
+                         <button class="loschen" type="submit" name="change" value="time"> Stunden erfassen</button>
+                         <button class="loschen" type="submit" name="change" value="timeshow"> Stunden Anzeigen</button>
+                    </div>
+
+                <div style="align-self: center; display: flex;">
+                    <input class="inputr" type="number" name="entf" placeholder="Stunden Nummer">
+                    <button class="loschen" type="submit" name="del" value="del">Löschen</button>
+                </div>
+
             </form>
         </div>
     </div>
