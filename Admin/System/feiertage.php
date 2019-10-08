@@ -37,41 +37,43 @@ if (isset($_SESSION['user'])) {
 
     <body>
     <nav class="Nav">
-        <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
-        <p id="Pul">TimeSheet </p>
-        <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+        <div class='placeholder'></div>
+        <div class='innerdiv'>
+            <div class='innderdivflex'>
+                <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
+                <p id="Pul">TimeSheet </p>
+                <a id="logout" href='../../index.php'>
+                    <button id="logoutb">Logout</button>
+                </a>
+            </div>
+        </div>
+        <div class='placeholder'></div>
     </nav>
-    <div class="cont">
-        <div class="fc">
-            <form class="feiertageform" action="" method="POST">
+    <div class="PlHtop"></div>
+    <div class="InContainer">
+            <form class="FreForItem" action="" method="POST">
                 <h2>Feiertage</h2>
-                <div class="plsFreirtage">
+                <h3>Feiertag Hinzufügen / Entfernen</h3>
 
-                    <div class="feiertagehinzu">
+                        <div class="FreInpuItem">
 
-                            <h3>Feiertag Hinzufügen</h3>
                             <label for="feiertagName">Name</label>
                             <input class="inputr" type="text" name="feiertagName" id="feiertagName">
 
                             <label for="feiertagDatum">Datum</label>
                             <input class="inputr" type="date" name="feiertagDatum" id="feiertagDatum">
 
-                            <input class="loginbut" type="submit" name="addFeiertag" value="Hinzufügen">
-                    </div>
-
-                    <div class="feiertageent">
-
-                            <h3>Feiertag Entfernen</h3>
-
                             <label for="feiertagId">ID</label>
 
                             <input class="inputr" type="number" name="feiertagId" id="feiertagId">
 
-                        <input class="loginbut" type="submit" name="delFeiertag" value="Entfernen">
-                    </div>
+                            <input class="loginbut" type="submit" name="addFeiertag" value="Hinzufügen">
 
-                    <div class="Tablescroll">
-                        <table>
+                            <input class="loginbut" type="submit" name="delFeiertag" value="Entfernen">
+                        </div>
+
+
+                        <table class="Tablescroll">
                             <tr>
                                 <th>
                                     Id
@@ -102,17 +104,14 @@ if (isset($_SESSION['user'])) {
                             ?>
 
                         </table>
+                    <div class="FreButtItem">
+                        <button class="FreButton" type="submit" name="system"> System</button>
+                        <button class="FreButton" type="reset">Zurücksetzen</button>
                     </div>
-                    <div class="feiertagebot">
-                        <button class="loginbut" type="submit" name="system"> System</button>
-                        <input class="loginbut" type="reset">
-                    </div>
-
-                </div>
-
             </form>
-        </div>
+
     </div>
+    <div class="PlHbottom"></div>
     </body>
     <footer>
         <p id="Pfo">Copyright reamis ag</p>

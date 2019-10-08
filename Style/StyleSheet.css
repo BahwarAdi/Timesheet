@@ -419,7 +419,6 @@ template {
 /*===========Mainpage=========*/
 #BnCol {
     color: #eafcff;
-    margin-left: 1%;
 }
 
 .MainIt {
@@ -438,31 +437,45 @@ template {
 #BuSize {
     min-width: 15vh;
 }
-
+.MainRes{
+    margin:20px;
+}
 @media screen and (max-width: 510px) {
     .MainRes {
         display: grid;
         grid-template-columns: auto auto;
+        margin: 10px;
     }
 }
 
 /*===========EndMainpage=========*/
-/*--------------Nav--------------*/
+/*-------------------------------*/
+/*==============Nav==============*/
 .Nav {
-    overflow: hidden;
     background-color: #333;
-    width: 100%;
+    width: 100vw;
     height: auto;
     position: fixed;
     z-index: 1;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
 }
-
+.placeholder {
+    width: 15px;
+}
+.innerdiv {
+    flex-grow: 1;
+}
+.innderdivflex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 /*---------------------------------*/
+
 /*==========UserVerwaltung===================*/
 .UserVerwaItem {
     display: flex;
@@ -472,14 +485,10 @@ template {
     align-items: center;
     align-self: center;
     border-radius: 6px;
+    height: 600px;
 }
 
-.FirstItem {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
+
 
 @media screen and (min-width: 396px) {
     .FirstItem {
@@ -487,6 +496,7 @@ template {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        height: auto;
 
     }
 
@@ -499,6 +509,11 @@ template {
 }
 
 @media screen and (max-width: 395px) {
+    .UserVerwaItem{
+        background: #718096;
+        height: auto;
+
+    }
 
     .ButtonsDiv {
         display: flex;
@@ -545,7 +560,133 @@ template {
     height: 10vh;
 }
 
-/*==========EndUserVerwaltung================*/
+/*==========EndUserVerwaltung==================*/
+/*---------------------------------------------*/
+
+
+/*==========Projekterfassung===================*/
+.ProForItem {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: #718096;
+    border-radius: 6px;
+    min-height: 460px;
+    justify-content: space-evenly;
+}
+.ProHed{
+    margin-bottom: -1px;
+}
+.ProForInpItem{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.ProForButtItem{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.InputItem{
+    display: flex;
+    flex-direction: column;
+}
+.ProForInput{
+    border-radius: 12px;
+}
+.ProeButton{
+    width: 119px;
+    height: 24px;
+    border-radius: 12px;
+}
+
+/*==========EndProjekterfassung================*/
+/*---------------------------------------------*/
+
+/*============System===========================*/
+
+.SysForItem{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-self: center;
+    background-color: #718096;
+    border-radius: 6px;
+    min-width: 300px;
+    height: 437px;
+}
+.SysInpItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: baseline;
+    align-self: center;
+}
+.SysButtItem{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 312px;
+    justify-content: space-evenly;
+}
+.SysInpButton{
+    border-radius: 12px;
+    width: 200px;
+}
+.SysButton{
+    border-radius: 12px;
+    width: 150px;
+}
+/*============EndSystem===========================*/
+/*------------------------------------------------*/
+
+/*==============Feirtage===========================*/
+
+.FreForItem{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: #718096;
+    border-radius: 5px;
+    width: 36em;
+    align-items: center;
+    align-self: center;
+}
+.FreInpuItem{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: baseline;
+    align-self: center;
+}
+.FreButtItem{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: -webkit-fill-available;
+    justify-content: space-evenly;
+    align-self: center;
+    margin: 15px;
+}
+.FreButton{
+    border-radius: 12px;
+    width: 189px;
+}
+
+.PlHbottom{
+    background-color: #2d3748;
+    height: 0vh;
+}
+@media screen and (Max-height: 708px) {
+
+    .PlHbottom{
+        background-color: #2d3748;
+        height: 25vh;
+    }
+}
+/*==============EndFeirtage===========================*/
 .cont {
     display: flex;
     justify-content: center;
@@ -637,8 +778,8 @@ label {
 }
 
 body, html {
-    height: 100%;
-    margin: 0;
+    height: 100vh;
+    width: 100vw;
 }
 
 table {
@@ -647,6 +788,7 @@ table {
     width: 100%;
     text-align: center;
     background: #dddddd;
+    scrollbar-color: #f56565;
 }
 
 td, th {
@@ -691,10 +833,6 @@ footer {
 .chart {
     text-align: center;
     align-items: center;
-}
-
-#logout {
-    margin-right: 1%;
 }
 
 #logoutb {
@@ -758,10 +896,11 @@ footer {
     text-align: center;
 }
 
+
+
 table {
     border-collapse: separate;
     border-spacing: 0;
-    min-width: 350px;
     border-radius: 6px;
 }
 
@@ -780,7 +919,7 @@ table tr td:first-child {
 table tr th {
     background: #eee;
     border-top: 1px solid #bbb;
-    text-align: left;
+    text-align: center;
 }
 
 /* top-left border-radius */
@@ -813,6 +952,7 @@ table tr:last-child td:first-child {
     overflow: auto;
     display: grid;
     border-radius: 6px;
+    margin: 6px;
 }
 
 .feiertageform {
@@ -847,4 +987,7 @@ table tr:last-child td:first-child {
 
 button:focus {
     outline: none;
+}
+body::-webkit-scrollbar{
+    display: none;
 }

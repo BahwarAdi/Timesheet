@@ -49,13 +49,13 @@ if (isset($_SESSION['user'])) {
                 <div class="InputItem">
                     <h3>Projekt Hinzufügen/Archivieren</h3>
                     <label for="projektName">Projektname</label>
-                    <input class="ForInput" type="text" name="projektName" id="projektName">
+                    <input class="inputr" type="text" name="projektName" id="projektName">
 
                     <label for="Beschreibung">Beschreibung</label>
-                    <input class="ForInput" type="text" name="projektBeschreibung" id="Beschreibung">
+                    <input class="inputr" type="text" name="projektBeschreibung" id="Beschreibung">
 
-                    <input class="ForInput" type="submit" name="projekt" value="Hinzufügen">
-                    <input class="ForInput" type="submit" name="archiv" value="Archivieren">
+                    <input class="ProForInput" type="submit" name="projekt" value="Hinzufügen">
+                    <input class="ProForInput" type="submit" name="archiv" value="Archivieren">
                 </div>
             </div>
             <div class="ProForButtItem">

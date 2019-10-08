@@ -42,7 +42,7 @@ if (isset($_POST['Charts'])) {
         <div class='innderdivflex'>
             <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
             <p id="Pul">TimeSheet </p>
-            <a id="logout" href='../../index.php'>
+            <a id="logout" href='./../index.php'>
                 <button id="logoutb">Logout</button>
             </a>
         </div>
