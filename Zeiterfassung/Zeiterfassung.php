@@ -68,9 +68,9 @@ if(isset($_SESSION['user'])) {
                                     echo('<option>'. $res['projektname'] .'</option>');}?>
                             </select></p>
                         <p class="font" > Beschreibung <input  class="inpt3" type="text" name="beschreibung" required></p>
+                        <button class="inpt3butt" type="submit" name="save" value="save" >Speichern</button>
                         </form>
-                        <form><button class="inpt3butt" type="submit" name="save" value="save" >Speichern</button></form>
-                        <form><button class="inpt3butt" type="submit" name="time" value="time"> Stundenübersicht </button></form>
+                        <form method="post"><button class="inpt4butt" type="submit" name="time" value="time"> Stundenübersicht </button></form>
                     </div>
             </form>
             </div>
