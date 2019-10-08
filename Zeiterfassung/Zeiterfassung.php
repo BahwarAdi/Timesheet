@@ -53,14 +53,14 @@ if(isset($_SESSION['user'])) {
     <div class="cont">
         <div class="formstund">
             <form action="" method="POST">
-                    <div style="display: flex; flex-direction: column; height: 500px; justify-content: center">
+                    <div style="display: flex; flex-direction: column; height: 900px; justify-content: center">
                         <h2>Zeiterfassung</h2>
-                            <p class="font" > Datum <input class="inpt3" type="date" name="datum" required> </p>
-                            <p class="font" > Kalenderwoche <input class="inpt3" type="number" name="kalenderwoche" required> </p>
-                            <p class="font" > Start <input class="inpt3" type="time" name="start" required> </p>
-                            <p class="font" > Stop <input class="inpt3" type="time" name="stop" required> </p>
-                            <p class="font" > Pause <input class="inpt3" type="time" name="pause"> </p>
-                            <p class="font" > Projekt <select class="inpt3" name="projekt"  required >
+                            <p class="font" > Datum         <input class="inpt3" type="date" name="datum" required> </p>
+                            <p class="font" > KW <input class="inpt3" type="number" name="kalenderwoche" required> </p>
+                            <p class="font" > Start         <input class="inpt3" type="time" name="start" required> </p>
+                            <p class="font" > Stop          <input class="inpt3" type="time" name="stop" required> </p>
+                            <p class="font" > Pause         <input class="inpt3" type="time" name="pause"> </p>
+                            <p class="font" > Projekt       <select class="inpt3" name="projekt"  required >
                                 <?php
                                 $commsel = "SELECT * FROM `projekt`WHERE projekt.archiviert = 'FALSE'";
                                 $query = $mysqli->query($commsel);
@@ -68,10 +68,12 @@ if(isset($_SESSION['user'])) {
                                     echo('<option>'. $res['projektname'] .'</option>');}?>
                             </select></p>
                         <p class="font" > Beschreibung <input  class="inpt3" type="text" name="beschreibung" required></p>
-                        <button class="inpt3butt" type="submit" name="save" value="save">Speichern</button>
+                        <button class="inpt3butt" type="submit" name="save" value="save" style="margin-left: 100px">Speichern</button>
                     </div>
             </form>
-            <form method="post" style="align-self: center"><button class="inpt3butt" type="submit" name="time" value="time"> Stundenübersicht </button></form>
+            <form method="post" style="align-self: center">
+                <button class="inpt3butt" type="submit" name="time" value="time" style="margin-left: 100px"> Stundenübersicht </button>
+            </form>
             </div>
         </div>
     </body>

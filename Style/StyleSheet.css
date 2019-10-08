@@ -939,13 +939,35 @@ table tr:last-child td:first-child {
     align-self: center;
     border-radius: 12px;
 }
-
 .inpt3butt{
     width: 200px;
     height: 30px;
     align-self: center;
     border-radius: 12px;
 }
+@media screen and (max-width: 550px) {
+    .formstund {
+        background-color: #718096;
+        border-radius: 6px;
+        height: 600px;
+        width: 300px;
+    }
+
+    .inpt3{
+        width: 100px;
+        height: 20px;
+        border-radius: 12px;
+    }
+    .inpt3butt{
+        width: 150px;
+        height: 20px;
+        border-radius: 12px;
+        margin-right: 100px;
+    }
+}
+
+
+
 .font{
     font-size: 15px;
     color: #eafcff;
