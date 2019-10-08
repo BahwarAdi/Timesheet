@@ -944,6 +944,7 @@ table tr:last-child td:first-child {
     height: 30px;
     align-self: center;
     border-radius: 12px;
+    margin-left: 200px;
 }
 @media screen and (max-width: 550px) {
     .formstund {
@@ -962,7 +963,7 @@ table tr:last-child td:first-child {
         width: 150px;
         height: 20px;
         border-radius: 12px;
-        margin-right: 100px;
+        margin-left: 70px;
     }
 }
 
