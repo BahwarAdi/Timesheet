@@ -51,53 +51,29 @@ if(isset($_SESSION['user'])) {
         <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
     </nav>
     <div class="cont">
-        <div class="fc">
+        <div class="formstund">
             <form action="" method="POST">
-                <fieldset>
-                    <h2>Hauptseite</h2>
-                    <div class='bls'>
-                        <form action="" method="post">
-                            <table>
-                                <tr>
-                                    <th>Datum</th>
-                                    <th>Kalenderwoche</th>
-                                    <th>Start</th>
-                                    <th>Stop</th>
-                                    <th>Pause</th>
-                                    <th>Projekt</th>
-                                    <th>Beschreibung</th>
-                                </tr>
-                                <tr>
-                                    <td><input type="date" name="datum" required> </td>
-                                    <td><input type="number" name="kalenderwoche" required> </td>
-                                    <td><input type="time" name="start" required> </td>
-                                    <td><input type="time" name="stop" required> </td>
-                                    <td><input type="time" name="pause"></td>
-                                    <td><select name="projekt"  required >
-                                            <?php
-                                            $commsel = "SELECT * FROM `projekt`WHERE projekt.archiviert = 'FALSE'";
-                                            $query = $mysqli->query($commsel);
-                                            while ($res = $query->fetch_array()){
-                                                echo('<option>'. $res['projektname'] .'</option>');
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" name="beschreibung" placeholder="Beschreibung" required></td>
-                                </tr>
-                            </table>
-                            <button type="submit" name="save" value="save">Speichern</button>
-                        </form>
-
-
-            <form action="" method="post"><button type="submit" name="time" value="time"> Stundenübersicht </button></form>
+                    <div style="display: flex; flex-direction: column; height: 500px; justify-content: center">
+                        <h2>Zeiterfassung</h2>
+                            <p class="font" > Datum <input class="inpt3" type="date" name="datum" required> </p>
+                            <p class="font" > Kalenderwoche <input class="inpt3" type="number" name="kalenderwoche" required> </p>
+                            <p class="font" > Start <input class="inpt3" type="time" name="start" required> </p>
+                            <p class="font" > Stop <input class="inpt3" type="time" name="stop" required> </p>
+                            <p class="font" > Pause <input class="inpt3" type="time" name="pause"> </p>
+                            <p class="font" > Projekt <select class="inpt3" name="projekt"  required >
+                                <?php
+                                $commsel = "SELECT * FROM `projekt`WHERE projekt.archiviert = 'FALSE'";
+                                $query = $mysqli->query($commsel);
+                                while ($res = $query->fetch_array()){
+                                    echo('<option>'. $res['projektname'] .'</option>');}?>
+                            </select></p>
+                        <p class="font" > Beschreibung <input  class="inpt3" type="text" name="beschreibung" required></p>
+                        <button class="inpt3butt" type="submit" name="save" value="save">Speichern</button>
                     </div>
-                </fieldset>
             </form>
+            <form method="post" style="align-self: center"><button class="inpt3butt" type="submit" name="time" value="time"> Stundenübersicht </button></form>
+            </div>
         </div>
-
-    </div>
-
     </body>
     <footer>
         <p id="Pfo">Copyright reamis ag</p>

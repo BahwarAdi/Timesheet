@@ -721,6 +721,11 @@ footer {
     border-radius: 12px;
 }
 
+.loginbut1 {
+    border-radius: 12px;
+    width: 200px;
+    max-height: 30px;
+}
 .loginbut {
     border-radius: 12px;
     width: 200px;
@@ -917,8 +922,54 @@ table tr:last-child td:first-child {
         height: 30px;
     }
 }
+.formstund{
+    background-color: #718096;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    width: 500px;
+    justify-content: space-evenly;
+}
 
+.inpt3{
+    width: 200px;
+    height: 20px;
+    align-self: center;
+    border-radius: 12px;
+}
 
+.inpt3butt{
+    width: 200px;
+    height: 30px;
+    align-self: center;
+    border-radius: 12px;
+}
+.font{
+    font-size: 15px;
+    color: #eafcff;
+    margin-right: 100px;
+    align-self: flex-end
+}
+.formanzeigen{
+    height: 400px;
+    width: 300px;
+    background-color: #718096;
+    align-self: center;
+    border-radius: 6px;
+}
+.stundenformulardiv{
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 200px;
+}
+
+.inhalt{
+    display: flex;
+    flex-direction: column;
+}
 ::-webkit-scrollbar {
     width: 12px;
 }
