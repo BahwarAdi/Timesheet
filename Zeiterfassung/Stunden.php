@@ -74,7 +74,14 @@ if(isset($_SESSION['user'])) {
                         <input class="inputr" type="date" name="stop" required>
                         <button class="loginbut1" type="submit" name="go" value="Anzeigen">Anzeigen</button>
                     </div>
-                    <h2><?php echo $stunden;?> Stunden </h2>
+                    <h2><?php
+                        if ($stunden == 0){
+                            echo 'keine Stunden Vorhanden';
+                        }
+                        else{
+                            echo $stunden. ' Stunden';
+                        }
+                        ?>  </h2>
                 </form>
             <form method="post"><button class="loginbut1" style="margin-left: 50px" name="userverwaltung">Stundenübersicht</button></form>
 
