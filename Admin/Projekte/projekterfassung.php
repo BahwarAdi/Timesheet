@@ -27,80 +27,75 @@ if (isset($_SESSION['user'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     </head>
-
     <body>
     <nav class="Nav">
-        <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
-        <p id="Pul">TimeSheet </p>
-        <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+        <div class='placeholder'></div>
+        <div class='innerdiv'>
+            <div class='innderdivflex'>
+                <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
+                <p id="Pul">TimeSheet </p>
+                <a id="logout" href='../../index.php'>
+                    <button id="logoutb">Logout</button>
+                </a>
+            </div>
+        </div>
+        <div class='placeholder'></div>
     </nav>
-    <div class="I">
-        <div class="fc">
-            <form class="projekteerform" action="" method="POST">
-                <h2>Projekterfassung</h2>
-                    <div class='plsProjekte'>
-                        <div class=feiertageent>
-                            <h3>Projekt Hinzufügen</h3>
+    <div class="PlHa"></div>
+    <div class="InContainer">
+        <form class="ProForItem" action="" method="POST">
+            <h2 class="ProHed">Projekterfassung</h2>
+            <div class="ProForInpItem">
+                <div class="InputItem">
+                    <h3>Projekt Hinzufügen/Archivieren</h3>
+                    <label for="projektName">Projektname</label>
+                    <input class="ForInput" type="text" name="projektName" id="projektName">
 
-                            <label for="projektName">Projektname</label>
-                            <input class="inputr" type="text" name="projektName" id="projektName">
+                    <label for="Beschreibung">Beschreibung</label>
+                    <input class="ForInput" type="text" name="projektBeschreibung" id="Beschreibung">
 
-                            <label for="Beschreibung">Beschreibung</label>
-                            <input class="inputr" type="text" name="projektBeschreibung" id="Beschreibung">
+                    <input class="ForInput" type="submit" name="projekt" value="Hinzufügen">
+                    <input class="ForInput" type="submit" name="archiv" value="Archivieren">
+                </div>
+            </div>
+            <div class="ProForButtItem">
+                <button class="ProeButton" type="reset">Zurücksetzen</button>
+                <button class="ProeButton" type="submit" name="main">Hauptseite</button>
+            </div>
+            <div class="Tablescroll">
+                <table>
+                    <tr>
+                        <th>
+                            Projektname
+                        </th>
+                        <th>
+                            Beschreibung
+                        </th>
+                    </tr>
 
-                            <input class="inputr" type="submit" name="projekt" value="Hinzufügen">
-                            <input class="inputr" type="reset">
-                        </div>
+                    <?php
 
-                        <div class="feiertageent">
-                            <h3>Projekt Archivieren</h3>
+                    $res = $mysqli->query("SELECT projektname, beschreibung FROM projekt WHERE archiviert LIKE 'false' ORDER BY projektId");
 
-                            <label for="projektName">Projektname</label>
-                            <input class="inputr" type="text" name="projektName" id="projektName">
+                    while ($row = $res->fetch_assoc()) {
 
-                            <input class="inputr" type="submit" name="archiv" value="Archivieren">
-                            <input class="inputr" type="reset">
-                            <button class="inputr" type="submit" name="main"> Hauptseite</button>
-                        </div>
-
-                        <div class="Tablescroll">
-                            <table>
-                                <tr>
-                                    <th>
-                                        Projektname
-                                    </th>
-                                    <th>
-                                        Beschreibung
-                                    </th>
-                                </tr>
-
-                                <?php
-
-                                $res = $mysqli->query("SELECT projektname, beschreibung FROM projekt WHERE archiviert LIKE 'false' ORDER BY projektId");
-
-                                while ($row = $res->fetch_assoc()) {
-
-                                    echo('<tr>
+                        echo('<tr>
                                               <td>' . $row['projektname'] . '</td>
                                               <td>' . $row['beschreibung'] . '</td>
                                           </tr>
                                     ');
 
-                                }
-                                ?>
-                            </table>
-                        </div>
-                    </div>
-            </form>
-        </div>
+                    }
+                    ?>
+                </table>
+            </div>
+        </form>
     </div>
-
-    </body>
     <footer>
         <p id="Pfo">Copyright reamis ag</p>
     </footer>
+    </body>
     </html>
-
     <?php
 } else {
     header('Location: ../../index.php');

@@ -438,31 +438,45 @@ template {
 #BuSize {
     min-width: 15vh;
 }
-
+.MainRes{
+    margin:20px;
+}
 @media screen and (max-width: 510px) {
     .MainRes {
         display: grid;
         grid-template-columns: auto auto;
+        margin: 10px;
     }
 }
 
 /*===========EndMainpage=========*/
-/*--------------Nav--------------*/
+/*-------------------------------*/
+/*==============Nav==============*/
 .Nav {
-    overflow: hidden;
     background-color: #333;
-    width: 100%;
+    width: 100vw;
     height: auto;
     position: fixed;
     z-index: 1;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
 }
-
+.placeholder {
+    width: 15px;
+}
+.innerdiv {
+    flex-grow: 1;
+}
+.innderdivflex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 /*---------------------------------*/
+
 /*==========UserVerwaltung===================*/
 .UserVerwaItem {
     display: flex;
@@ -472,14 +486,10 @@ template {
     align-items: center;
     align-self: center;
     border-radius: 6px;
+    height: 600px;
 }
 
-.FirstItem {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
+
 
 @media screen and (min-width: 396px) {
     .FirstItem {
@@ -487,7 +497,8 @@ template {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-evenly;
-        width: 50vh;
+        height: auto;
+
     }
 
     .ButtonsDiv {
@@ -499,6 +510,11 @@ template {
 }
 
 @media screen and (max-width: 395px) {
+    .UserVerwaItem{
+        background: #718096;
+        height: auto;
+
+    }
 
     .ButtonsDiv {
         display: flex;
@@ -545,7 +561,48 @@ template {
     height: 10vh;
 }
 
-/*==========EndUserVerwaltung================*/
+/*==========EndUserVerwaltung==================*/
+/*---------------------------------------------*/
+
+
+/*==========Projekterfassung===================*/
+.ProForItem {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: #718096;
+    border-radius: 6px;
+    min-height: 460px;
+    justify-content: space-evenly;
+}
+.ProHed{
+    margin-bottom: -1px;
+}
+.ProForInpItem{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.ProForButtItem{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.InputItem{
+    display: flex;
+    flex-direction: column;
+}
+.ForInput{
+    border-radius: 6px;
+}
+.ProeButton{
+    width: 119px;
+    height: 24px;
+    border-radius: 6px;
+}
+
+/*==========EndProjekterfassung================*/
 .cont {
     display: flex;
     justify-content: center;
@@ -567,23 +624,9 @@ template {
 .fc {
     display: flex;
     bottom: 50%;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width: 100%;
-    overflow-y: auto;
-    flex-wrap: wrap;
-}
-.fc1 {
-    width: 500px;
-    height: 300px;
-    display: flex;
-
-}
-@media screen and (max-width: 550px) {
-    .fc1 {
-        width: 300px;
-        height: 300px;
-        display: flex;
-    }
+    overflow: auto;
 }
 
 input, select {
@@ -613,9 +656,8 @@ input, select {
 }
 
 .plsUser {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    display: grid;
+    justify-content: center;
 }
 
 .feiertagehinzu {
@@ -652,8 +694,8 @@ label {
 }
 
 body, html {
-    height: 100%;
-    margin: 0;
+    height: 100vh;
+    width: 100vw;
 }
 
 table {
@@ -708,10 +750,6 @@ footer {
     align-items: center;
 }
 
-#logout {
-    margin-right: 1%;
-}
-
 #logoutb {
     background-color: #718096;
     color: white;
@@ -734,12 +772,6 @@ footer {
 
 .inputr {
     border-radius: 6px;
-}
-
-.inputr1 {
-    border-radius: 6px;
-    width: 200px;
-    align-self: center;
 
 }
 
@@ -767,38 +799,7 @@ footer {
 .userform {
     background-color: #718096;
     border-radius: 6px;
-    width: 400px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
 }
-
-.labelimput{
-    margin-left: 100px;
-}
-@media screen and (max-width: 550px) {
-
-    .userform {
-        background-color: #718096;
-        border-radius: 6px;
-        width: 300px;
-        height: 400px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-    }
-    .labelimput{
-        margin-left: 50px;
-    }
-    .loginbut {
-        border-radius: 12px;
-        width: 100px;
-        max-height: 60px;
-        font-size: 10px;
-    }
-}
-
 
 .systemform {
     background-color: #718096;
@@ -815,10 +816,11 @@ footer {
     text-align: center;
 }
 
+
+
 table {
     border-collapse: separate;
     border-spacing: 0;
-    min-width: 350px;
     border-radius: 6px;
 }
 
@@ -837,7 +839,7 @@ table tr td:first-child {
 table tr th {
     background: #eee;
     border-top: 1px solid #bbb;
-    text-align: left;
+    text-align: center;
 }
 
 /* top-left border-radius */
@@ -864,6 +866,14 @@ table tr:last-child td:first-child {
     border-radius: 6px;
 }
 
+.Tablescroll {
+    width: auto;
+    height: 113px;
+    overflow: auto;
+    display: grid;
+    border-radius: 6px;
+    margin: 6px;
+}
 
 .feiertageform {
     background-color: #718096;
@@ -878,49 +888,7 @@ table tr:last-child td:first-child {
 .stundenueberform {
     background-color: #718096;
     border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    height: 600px;
-    width: 550px;
-    justify-content: space-evenly;
-}
 
-.Tablescroll {
-    width: 500px;
-    height: 300px;
-    overflow: auto;
-    border-radius: 6px;
-    align-self: center;
-}
-.loschen{
-    border-radius: 12px;
-    font-size: 15px;
-    height: 30px;
-}
-@media screen and (max-width: 550px) {
-    .stundenueberform {
-        background-color: #718096;
-        border-radius: 6px;
-        display: flex;
-        flex-direction: column;
-        height: 600px;
-        width: 300px;
-        justify-content: space-evenly;
-    }
-
-    .Tablescroll {
-        width: 260px;
-        height: 300px;
-        overflow: auto;
-        border-radius: 6px;
-        align-self: center;
-        font-size: 10px;
-    }
-    .loschen{
-        border-radius: 12px;
-        font-size: 10px;
-        height: 30px;
-    }
 }
 .formstund{
     background-color: #718096;
@@ -986,4 +954,7 @@ table tr:last-child td:first-child {
 
 button:focus {
     outline: none;
+}
+body::-webkit-scrollbar{
+    display: none;
 }
