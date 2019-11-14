@@ -13,7 +13,6 @@ if (isset($_SESSION['user'])) {
         $mysqli->query("INSERT INTO projekt (projektname,beschreibung,archiviert) VALUES ('$projektName','$projektBeschreibung','false')");
     } elseif (isset($_POST['archiv'])) {
         $projektName = $_POST['projektName'];
-
         $mysqli->query("UPDATE projekt SET archiviert = 'true' WHERE projektname LIKE '$projektName'");
     }
 
@@ -32,7 +31,9 @@ if (isset($_SESSION['user'])) {
         <div class='placeholder'></div>
         <div class='innerdiv'>
             <div class='innderdivflex'>
-                <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
+                <p id="BnCol">
+                    <a class='UVlink' href='../Admin/User/Userverwaltung.php'>Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></a> |
+                    <a class='UVlink' href=''>Projkte</a> </p>
                 <p id="Pul">TimeSheet </p>
                 <a id="logout" href='../../index.php'>
                     <button id="logoutb">Logout</button>
@@ -62,7 +63,7 @@ if (isset($_SESSION['user'])) {
                 <button class="ProeButton" type="reset">Zurücksetzen</button>
                 <button class="ProeButton" type="submit" name="main">Hauptseite</button>
             </div>
-            <div class="Tablescroll">
+            <div class="PTablescroll">
                 <table>
                     <tr>
                         <th>
@@ -75,7 +76,7 @@ if (isset($_SESSION['user'])) {
 
                     <?php
 
-                    $res = $mysqli->query("SELECT projektname, beschreibung FROM projekt WHERE archiviert LIKE 'false' ORDER BY projektId");
+                    $res = $mysqli->query("SELECT projektname, beschreibung FROM projekt ORDER BY projektId");
 
                     while ($row = $res->fetch_assoc()) {
 

@@ -73,9 +73,6 @@ pre {
 * Remove the gray background on active links in IE 10.
 */
 
-a {
-    background-color: transparent;
-}
 
 /**
 * 1. Remove the bottom border in Chrome 57-
@@ -370,6 +367,8 @@ template {
     display: flex;
     align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     min-height: 100vh;
     background-color: #2d3748;
 }
@@ -398,21 +397,17 @@ template {
 }
 
 .LoginBut {
-    border-radius: 12px;
-    width: 100px;
+    border-radius: 6px;
+    width: 29%;
+    height: 34px;
     color: black;
 }
 
-#LoginBut {
-    background-color: #48BB78;
-
+.Logininput{
+    width: 70%;
+    height: 30px;
+    border-radius: 6px;
 }
-
-#ZurkBut {
-    background-color: #A3BFFA;
-
-}
-
 /*===========EndIndex==========*/
 /*=============================*/
 
@@ -438,16 +433,33 @@ template {
     min-width: 15vh;
 }
 .MainRes{
-    margin:20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20%;
+    margin-top: 2%;
 }
-@media screen and (max-width: 510px) {
-    .MainRes {
-        display: grid;
-        grid-template-columns: auto auto;
-        margin: 10px;
+.Mh2 {
+    text-align: center;
+    color: #dddddd;
+    margin-top: 22%;
+}
+@media screen and (min-width: 1024px){
+    .Mh2 {
+        margin-top: 12%;
+        color: #dddddd;
     }
 }
 
+
+.chart {
+    text-align: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 9px;
+    margin: 5px
+}
 /*===========EndMainpage=========*/
 /*-------------------------------*/
 /*==============Nav==============*/
@@ -474,6 +486,12 @@ template {
     justify-content: space-between;
     align-items: center;
 }
+
+.UVlink:visited{color: #eafcff}
+.UVlink:link{color: #eafcff}
+.UVlink:hover{color: #718096}
+.UVlink{text-decoration:none}
+
 /*---------------------------------*/
 
 /*==========UserVerwaltung===================*/
@@ -487,7 +505,6 @@ template {
     border-radius: 6px;
     height: 600px;
 }
-
 
 
 @media screen and (min-width: 396px) {
@@ -573,6 +590,8 @@ template {
     border-radius: 6px;
     min-height: 460px;
     justify-content: space-evenly;
+    align-content: center;
+    width: 80%;
 }
 .ProHed{
     margin-bottom: -1px;
@@ -600,7 +619,14 @@ template {
     height: 24px;
     border-radius: 12px;
 }
-
+.PTablescroll {
+    width: 97%;
+    height: 120px;
+    overflow: auto;
+    display: grid;
+    border-radius: 6px;
+    margin: 6px;
+}
 /*==========EndProjekterfassung================*/
 /*---------------------------------------------*/
 
@@ -830,15 +856,12 @@ footer {
     align-self: flex-end;
 }
 
-.chart {
-    text-align: center;
-    align-items: center;
-}
+
 
 #logoutb {
     background-color: #718096;
     color: white;
-    padding: 13px;
+    padding: 10px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 12px;
@@ -897,7 +920,7 @@ footer {
 }
 
 
-
+/*--------------Table------*/
 table {
     border-collapse: separate;
     border-spacing: 0;
@@ -946,15 +969,7 @@ table tr:last-child td:first-child {
     border-radius: 6px;
 }
 
-.Tablescroll {
-    width: auto;
-    height: 113px;
-    overflow: auto;
-    display: grid;
-    border-radius: 6px;
-    margin: 6px;
-}
-
+/*--------end---------------*/
 .feiertageform {
     background-color: #718096;
     border-radius: 6px;

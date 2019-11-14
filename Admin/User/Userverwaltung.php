@@ -1,7 +1,6 @@
 <?php
 session_start();
 if (isset($_SESSION['user'])) {
-
     require_once('../../Config/config.php');
 
     if (isset($_POST['main'])) {
@@ -21,9 +20,17 @@ if (isset($_SESSION['user'])) {
     <body>
 
     <nav class="Nav">
-        <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
-        <p id="Pul">TimeSheet </p>
-        <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+        <div class='placeholder'></div>
+        <div class='innerdiv'>
+            <div class='innderdivflex'>
+                <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
+                <p id="Pul">TimeSheet </p>
+                <a id="logout" href='./../index.php'>
+                    <button id="logoutb">Logout</button>
+                </a>
+            </div>
+        </div>
+        <div class='placeholder'></div>
     </nav>
 
     <div class="PlHa"></div>
@@ -31,16 +38,32 @@ if (isset($_SESSION['user'])) {
     //
     #region-Admin
     if ($_SESSION['user'] == 'admin') {
-        $id = $_POST['userId'];
-        $nachname = $_POST['nachname'];
-        $vorname = $_POST['vorname'];
-        $email = $_POST['email'];
-        $passwort = md5($_POST['passwort']);
-        $typ = $_POST['typ'];
-        $soll = $_POST['soll'];
+        $id = null;
+
+       if(isset($_POST['userId']) && $_POST['userId'] !== ''){
+            $id = $_POST['userId'];
+        }
+        if(isset($_POST['nachname']) && $_POST['nachname'] !== '') {
+            $nachname = $_POST['nachname'];
+        }
+        if(isset($_POST['vorname']) && $_POST['vorname'] !== '') {
+            $vorname = $_POST['vorname'];
+        }
+        if(isset($_POST['email']) && $_POST['email'] !== '') {
+            $email = $_POST['email'];
+        }
+        if(isset($_POST['passwort']) && $_POST['passwort'] !== '') {
+            $passwort = md5($_POST['passwort']);
+        }
+        if(isset($_POST['typ']) && $_POST['typ'] !== '') {
+            $typ = $_POST['typ'];
+        }
+        if(isset($_POST['soll']) && $_POST['soll'] !== '') {
+            $soll = $_POST['soll'];
+        }
 //hinzufügen
-        if ($_POST['hinzu'] == 'hinzu') {
-            if ($nachname != null && $vorname != null && $email != null && $passwort != null && $typ != null && $soll != null) {
+        if (isset($_POST['hinzu']) && $_POST['hinzu'] == 'hinzu') {
+            if (isset($nachname,$vorname,$email,$passwort,$typ,$soll) && $nachname !== '' && $vorname !== '' && $email !== '' && $passwort !== '' && $typ !== '' && $soll !== '') {
                 $sql = "INSERT INTO user (nachname,vorname,email,passwort,typ,soll)VALUES('$nachname','$vorname','$email','$passwort','$typ','$soll')";
                 if ($mysqli->query($sql) === TRUE) {
                     $meldung = "Neue User wurde erfolgreich hinzugefügt";
@@ -53,8 +76,7 @@ if (isset($_SESSION['user'])) {
 
         }
         //löschen
-        if ($_POST['loeschen'] == 'loeschen') {
-
+        if (isset($_POST['loeschen']) && $_POST['loeschen'] == 'loeschen') {
             if ($id != null) {
 
                 $sql = "DELETE FROM user WHERE userId ='$id' ";
@@ -69,10 +91,9 @@ if (isset($_SESSION['user'])) {
             }
         }
 //passwort zurücksetzen
-        if ($_POST['pasz'] == 'pasz') {
+        if (isset($_POST['pasz']) && $_POST['pasz'] == 'pasz') {
 
-            if ($email != null) {
-
+            if (isset($email) && $email !== '') {
                 //Generat a random md5 passwort
                 $str = rand();
                 $passwort = md5($str);
@@ -137,10 +158,10 @@ if (isset($_SESSION['user'])) {
                     <p class="UserVerP">* Beim Hinzufügen ID Feld am Besten Frei lassen!</p>
                     <p class="UserVerP">* Beim Löschen Nur ID Feld am Besten eingeben !</p>
                     <p class="UserVerP">* Beim Psswort Zurücksetzen Nur E-Mail Feld eingeben !</p>
-                    <p id="Perro"><?php if ($errorMessage) {
+                    <p id="Perro"><?php if (isset($errorMessage) && $errorMessage !== '') {
                             echo("$errorMessage");
                         } ?></p>
-                    <p id="Pmel"><?php if ($meldung) {
+                    <p id="Pmel"><?php if (isset($meldung) && $meldung !=='') {
                             echo("$meldung");
                         } ?></p>
                 </div>
@@ -156,8 +177,9 @@ if (isset($_SESSION['user'])) {
 
     #region-User
     if ($_SESSION['user'] == 'user') {
+        $errorMessage='';
 
-        if ($_POST['aendern'] == 'aendern') {
+        if (isset ($_POST['aendern']) && $_POST['aendern'] == 'aendern') {
 
             $email = $_POST['email'];
             $passwort = md5($_POST['passwort']);
@@ -180,7 +202,7 @@ if (isset($_SESSION['user'])) {
                 <button class="loginbut" type="submit" name="main" style="align-self: center"> Zur Hauptseite zurück</button>
                 <p id="Perro">
                     <?php
-                    if ($errorMessage) {
+                    if (isset($errorMessage)) {
                         echo("$errorMessage");
                     }
                     ?>

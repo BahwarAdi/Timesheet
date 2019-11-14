@@ -1,16 +1,16 @@
 <?php
-///----- Datei holen -----/////
+///----- Datei holen -----///
 session_start();
 if(isset($_SESSION['user'])) {
     require_once "../Config/config.php";
-    if ($_POST['time'] == 'time'){
+    if (isset($_POST['time']) && $_POST['time'] == 'time'){
         header('Location: ../Pages/Stundenubersicht.php');
     }
     ///----- Welcher Benutzer -----///
     $userId = $_SESSION['userId'];    //abfrage welche user eingelogt ist
 
     ///----- Variablen -----///
-    if($_POST['save'] == 'save')
+    if(isset($_POST['save']) && $_POST['save'] == 'save')
     {
         $kalenderwoche = $_POST['kalenderwoche'];
         $datum = $_POST['datum'];
@@ -32,7 +32,6 @@ if(isset($_SESSION['user'])) {
         }
     }
 
-
     ///----- Projecktauswal -----///
     ?>
     <!DOCTYPE html>
@@ -46,9 +45,17 @@ if(isset($_SESSION['user'])) {
 
     <body>
     <nav class="Nav">
-        <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
-        <p id="Pul">TimeSheet </p>
-        <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+        <div class='placeholder'></div>
+        <div class='innerdiv'>
+            <div class='innderdivflex'>
+                <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
+                <p id="Pul">TimeSheet </p>
+                <a id="logout" href='./../index.php'>
+                    <button id="logoutb">Logout</button>
+                </a>
+            </div>
+        </div>
+        <div class='placeholder'></div>
     </nav>
     <div class="cont">
         <div class="formstund">

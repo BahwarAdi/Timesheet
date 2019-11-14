@@ -1,16 +1,16 @@
 <?php
 session_start();
-require_once "../Config/config.php";
-require_once  "../Zeiterfassung/Class_Zeit.php";
+require_once("../Config/config.php");
+require_once("../Zeiterfassung/Class_Zeit.php");
 
 if(isset($_SESSION['user'])) {
 
     $z = new Zeit();
     $stunden = 0;
-    $datumstrat = $_POST['start'];
-    $datumstop = $_POST['stop'];
-    $username = $_POST['user'];
-    $projektId = $_POST['projekt'];
+    $datumstrat = isset($_POST['start']);
+    $datumstop = isset($_POST['stop']);
+    $username = isset($_POST['user']);
+    $projektId = isset($_POST['projekt']);
 
     if (isset($_POST['alleb'])){
         $userId = '1,2,3,4,5,6,7,8,9';
@@ -21,7 +21,7 @@ if(isset($_SESSION['user'])) {
 
     $commall = 'SELECT * FROM zeit LEFT JOIN user ON zeit.userId = user.userId LEFT JOIN projekt ON zeit.projektId = projekt.projektId WHERE user.vorname ="'.$username.'" AND projekt.projektname = "'.$projektId.'" AND datum >= "'.$datumstrat.'" AND datum <= "'.$datumstop.'"';
 
-    if ($_POST['go'] == 'Anzeigen'){
+    if (isset($_POST['go']) && $_POST['go']== 'Anzeigen'){
         $query = $mysqli->query($commall);
         while($res = $query->fetch_assoc()){
             $z->arbeitszeit($res['start'],$res['stop'],$res['pause']);
@@ -43,9 +43,17 @@ if(isset($_SESSION['user'])) {
     </head>
 <body>
 <nav class="Nav">
-    <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
-    <p id="Pul">TimeSheet </p>
-    <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+    <div class='placeholder'></div>
+    <div class='innerdiv'>
+        <div class='innderdivflex'>
+            <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
+            <p id="Pul">TimeSheet </p>
+            <a id="logout" href='./../index.php'>
+                <button id="logoutb">Logout</button>
+            </a>
+        </div>
+    </div>
+    <div class='placeholder'></div>
 </nav>
     <div class="flex">
         <div class="formanzeigen">

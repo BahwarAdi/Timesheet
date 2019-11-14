@@ -38,7 +38,7 @@ if (isset($_SESSION['user'])) {
                 <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
                 <p id="Pul">TimeSheet </p>
                 <a id="logout" href='../../index.php'>
-                    <button id="logoutb">Logout</button>
+                    <button id="logoutb">Logout</button>va
                 </a>
             </div>
         </div>

@@ -1,18 +1,22 @@
 <?php
 session_start();
-if (isset($_SESSION['user'])) {
-    if ($_POST['change'] == 'main') {
+require_once ("../Config/config.php");
+require_once("../Zeiterfassung/Class_Zeit.php");
+if (isset($_SESSION['user']) && $_SESSION !=='' && $_SESSION['user'] === 'user') {
+
+
+    if (isset($_POST['change']) && $_POST['change'] == 'main') {
         header('Location: Mainpage.php');
     }
-    if ($_POST['change'] == 'time') {
+    if (isset($_POST['change']) && $_POST['change'] == 'time') {
         header('Location: ../Zeiterfassung/Zeiterfassung.php');
     }
-    if ($_POST['change'] == 'timeshow') {
+    if (isset($_POST['change']) && $_POST['change'] == 'timeshow') {
         header('Location: ../Zeiterfassung/Stunden.php');
     }
-    ///----- Dateien Holen -----///
-    require_once "../Config/config.php";
-    require_once "../Zeiterfassung/Class_Zeit.php";
+    /*----- Dateien Holen -----*/
+
+
     ///----- Variablen -----///
     $s = new Zeit();
     $userid = $_SESSION['userId'];
@@ -28,9 +32,17 @@ if (isset($_SESSION['user'])) {
     </head>
     <body>
     <nav class="Nav">
-        <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] ." ". $_SESSION['nachname']);?></p>
-        <p id="Pul">TimeSheet </p>
-        <a id="logout" href='../../index.php'><button id="logoutb">Logout</button></a>
+        <div class='placeholder'></div>
+        <div class='innerdiv'>
+            <div class='innderdivflex'>
+                <p id="BnCol">Benutzer:<?php echo($_SESSION['vorname'] . " " . $_SESSION['nachname']); ?></p>
+                <p id="Pul">TimeSheet </p>
+                <a id="logout" href='./../index.php'>
+                    <button id="logoutb">Logout</button>
+                </a>
+            </div>
+        </div>
+        <div class='placeholder'></div>
     </nav>
     <div class="cont">
         <div class="fc">
@@ -48,6 +60,7 @@ if (isset($_SESSION['user'])) {
                             echo('<button class="loschen" type="submit" name="was" value=' . $res['projektId'] . '> ' . $name . ' </button>');
                         }
                 ?>
+
                  </div>
 
                 <div class="Tablescroll">
@@ -58,9 +71,13 @@ if (isset($_SESSION['user'])) {
                     <tr>
                       <?php
                         $order = 'datum';
-                        $comm = ('SELECT * FROM `zeit` WHERE userId = ' . $userid . '  AND projektId =' . $_POST['was'] . ' ORDER BY ' . $order . ' ASC ');
+
+                        if(!isset($_POST['was'])){
+                            $_POST['was'] = 'all';
+                        }
+                        $comm = 'SELECT * FROM `zeit` WHERE userId = ' . $userid . '  AND projektId =' . $_POST['was'] . ' ORDER BY ' . $order . ' ASC ';
                         $commall = ('SELECT * FROM `zeit` WHERE userId = ' . $userid . ' ORDER BY ' . $order . ' ASC ');
-                        if (!$_POST['was'] || $_POST['was'] == 'all' || $_POST['num']) {
+                        if (!isset($_POST['was']) || $_POST['was'] == 'all') {
                             $query1 = $mysqli->query($commall);
                               while ($res1 = $query1->fetch_array()) {
                                   echo('<tr>');
@@ -69,6 +86,7 @@ if (isset($_SESSION['user'])) {
                                   $startzeit = $res1['start'];         ///Rechnen zeit
                                   $endzeit = $res1['stop'];            ///Rechnen zeit
                                   $pause = $res1['pause'];            ///Rechnen zeit
+                                  if(!$pause) $pause = "00:00:00";
                                   $s->arbeitszeit($startzeit, $endzeit, $pause);
                                   echo('<td>' . $tot_time . ' H</td>');
                                   echo('<td>' . $res1['beschreibung'] . '</td>');
@@ -82,6 +100,7 @@ if (isset($_SESSION['user'])) {
                                  $startzeit = $res['start'];         ///Rechnen zeit
                                  $endzeit = $res['stop'];            ///Rechnen zeit
                                  $pause = $res['pause'];            ///Rechnen zeit
+                                 if(!$pause) $pause = "00:00:00";
                                  $s->arbeitszeit($startzeit, $endzeit, $pause);
                                  echo('<td>' . $tot_time . ' H</td>');
                                  echo('<td>' . $res['beschreibung'] . '</td>');

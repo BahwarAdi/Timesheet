@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('Config/config.php');
+$errorMessage = '';
 if(isset($_GET['index'])){
     $email=$_POST['email'];
     $passwort= md5($_POST['passwort']);
@@ -38,13 +39,13 @@ if(isset($_GET['index'])){
                         <h2>LOGIN</h2>
                         <div class="LabInpIn">
                             <label for='id'>E-Mail</label>
-                            <input class="inputr" type="email" name="email" id='email'></input>
+                            <input class="Logininput" type="email" name="email" id='email'></input>
                             <label for='passwort'>Passwort</label>
-                            <input class="inputr" type="password" name="passwort" id="passwort"></input>
+                            <input class="Logininput" type="password" name="passwort" id="passwort"></input>
                         </div>
                         <div class = "InBu">
-                            <button class="LoginBut" id="LoginBut" type="submit" name="log" value="Log">Login</button>
-                            <button class="LoginBut" id="ZurkBut" type="reset" name="Reset" value="Zurücksetzen">Zurücksetzen</button>
+                            <button class="LoginBut"  type="submit" name="log" value="Log">Login</button>
+                            <button class="LoginBut"  type="reset" name="Reset" value="Zurücksetzen">Reset</button>
                         </div>
                 <p id="Perro"><?php if($errorMessage){echo ("$errorMessage");}?></p>
             </form>
